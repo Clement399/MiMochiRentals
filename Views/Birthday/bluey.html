@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        :root{
+            --bdclr: rgb(255, 183, 5); 
+            --bdclr2: rgba(0, 59, 149);
+            --bdclr3: rgb(132, 209, 44);
+            --bdShade:rgba(245, 245, 245);
+        }
+        .mainPage{
+            padding-inline: 50px;
+            background-color: white;
+        }
+        .header{
+            background-color: var(--bdclr2);
+            border: 1px solid var(--bdclr);
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+        .bannerList{
+            background-color: var(--bdclr2); 
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            min-width: fit-content;
+            gap: 30px;
+            padding-inline: 20px;
+            color: wheat;
+        }
+        .ProductsGrid{
+            display: grid;
+            grid-template-columns: auto auto;
+            background-color:antiquewhite;
+            padding: 20px;
+            justify-content: space-around;
+            border-radius: 90px;
+            gap: 30px;
+        }
+        .Products{
+            background-color:darkgrey;
+            color: beige;
+            display: flex;
+            flex-direction: column;
+            border: 5px solid whitesmoke;
+            border-radius: 9px;
+            cursor: pointer;
+        }
+        
+        .bd{
+            
+            border: 5px solid rgb(210, 210, 210);
+            background-color: var(--bdclr2);
+            color: gray;
+        }
+        .Products:hover{
+            box-shadow: 0 0 15px 15px rgb(236, 222, 141);
+            
+            border: 5px solid whitesmoke;
+            transform: scale(1.2);
+        }
+        .Products img{
+            border: 3px solid white;
+        }
+        .Products p{
+            align-self: center;
+            font-style: italic;
+            font-variant: small-caps;
+            font-size: 1.5vw;
+        }
+        .brick{
+            display: block;
+            width: 50%;
+            margin: 0 auto;
+            background-color: var(--bdclr);
+            border:3px solid var(--bdclr2);
+            align-content: center;
+            color:rgb(86, 85, 83);
+            border-radius: 8px;
+            text-align: center;
+        }
+        .brick h2{
+            align-self: center;
+        }
+        .desc{
+            padding-inline: 50px;
+            background-color: var(--bdclr3);
+            font-size: 20px;
+            color: white;
+        }
+        
+        .BdProductsGrid{
+            display: grid;
+            grid-template-columns: auto auto auto;
+            border: 3px solid burlywood;
+            padding: 20px;
+            justify-content: space-around;
+            border-radius: 90px;
+            gap: 30px;
+            margin: 30px;
+        }
+        .BirthdayPage{
+            background-image: url(/img/birthdaybg.jpg);
+            font-family:Verdana, Geneva, Tahoma, sans-serif;
+        }
+        .bdList{
+            border: 3px solid var(--bdclr2);
+            padding: 30px;
+            border-radius:  30px;
+        }
+        .weddingItem{
+            border: 0.5px solid rgb(225, 225, 225);
+            background-color: var(--bdShade);
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+            justify-content: space-evenly;
+            padding: 20px;
+            border-radius: 90px;
+        }
+        .weddingItem > div:not(:last-child):not(.picture) {
+        border-right: 2px solid rgb(183, 183, 183);
+        margin-right: 30px;
+        padding: 20px;
+        }
+        .picture{
+            background-color: rgb(255, 255, 255);
+            max-width: 50%;
+            color: var(--bdclr);
+            display: flex;
+            padding: 20px;
+            flex-direction: column;
+            border: 9px solid var(--bdclr);
+            border-radius: 9px;
+        }
+        .picture img{
+            border: 3px solid antiquewhite;
+        }
+        .picture h2{
+            font-size: 35px;
+            text-decoration:underline ;
+        }
+        .purchase{
+            background-color: aliceblue;
+            border: 2px solid aliceblue;
+            padding: 20px;
+            border-radius: 9px;
+            display: flex;
+            flex-direction: column;
+        }
+        .purchaseForm{
+            background-color: rgb(251, 251, 251);
+            border: 2px solid rgb(23, 23, 23);
+            padding: 20px;
+            gap: 10px;
+            border-radius: 9px;
+            display: flex;
+            flex-direction: column;
+        }
+        .productDescription{
+            border: 2px dotted gray;
+            padding-inline: 20px;
+        }
+        .divider{
+            color: var(--bdclr2);
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+        }
+        .divider h1{
+            font-size: 50px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .divider > div{
+            margin-inline: 30px;
+            font-size: 30px
+        }
+    </style>
+</head>
+<body class="mainPage BirthdayPage">
+    <div class="header">
+            <ul class="bannerList">
+                <li>
+                    <p>Home</p>
+                </li>
+                <li>
+                    <p>
+                        Weddings
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        Birthdays
+                    </p>
+                </li>
+            </ul>
+    </div>
+    <br><br><br><hr><br>
+    <div class="divider">
+        <div><p>========================================</p></div><h1><u><i>Bluey</i></u></h1><div><p>========================================</p></div>
+    </div>
+    <hr>
+        <br>
+        
+    <div class="weddingItem">
+        <div class="picture">
+            <h2>Background Boards</h2>
+            <img src="birthdayImage/standing_Background1.png" width="100%" title="Tables">
+        </div>
+        
+        <div>
+            <h2><i>Description</i></h2>
+            <hr>
+            <p>Three background boards themed with minecraft characters<br>
+                Let children immerse in the world of ______ with our themed backgrounds<br>
+                
+            </p>
+            
+        <hr>
+            <div class="productDescription">
+                <h2>Product Details</h2>
+                <p>Board dimensions:
+                        <br>   Board height : 100xm,
+                        <br>   Board width : 20xm,
+                        <br>   Board length : 60cm.
+
+                </p>
+            </div>
+        </div>
+
+        <div class="purchase">
+            <h2><b><u>Order Now!</u></b></h2>
+            <hr>
+            <form class="purchaseForm">
+                <div>
+                <label for="table">Select a product</label>
+            <select name="table&chair" id ="table" required>
+                <option>-</option>
+                <option value="BoardABC">Board A+B+C</option>
+                <option value="BoardA">Board A</option>
+                <option value="BoardB">Board B</option>
+                <option value="BoardC">Board C</option>
+                <option value="BoardAB">Board A+B</option>
+                <option value="BoardAC">Board A+C</option>
+                <option value="BoardBC">Board B+C</option>
+            </select>
+            </div>
+            <label for="tableCountName">Select Quantitiy : </label> 
+            <input type="number" id="tableCount"name="tableCountName" min="1" max="1" placeholder="Quantity" required>
+            <div>
+            <label for="startDate">Start Date :</label>
+            <input type="date" name="startDate" required>
+                <div >
+                    <label for="rentalTime">Time : </label>
+                    <select name="timeFrame" id="rentalTime" required>
+                    <option>-</option>
+                    <option value="Moring">Morning (7am-11am)</option>
+                    <option value="Afternoon">Afternoon (11am-4pm)</option>
+                    <option value="Evening">Evening (4pm-9pm)</option>
+                </select></div>
+            </div>
+            <div>
+            <label for="endDate">Return Date :</label>
+            <input type="date" name="endDate" required>
+            <div>
+                    <label for="rentalTime">Time : </label><select name="timeFrame" id="rentalTime" required>
+                    <option>-</option>
+                    <option value="Moring">Morning (7am-11am)</option>
+                    <option value="Afternoon">Afternoon (11am-4pm)</option>
+                    <option value="Evening">Evening (4pm-9pm)</option>
+                </select></div>
+            </div>
+            <input type="submit" value="Check Availability">
+            </form>
+        </div>
+    </div>
+    <br><hr><br>
+
+    <div class="weddingItem">
+        <div class="picture">
+            <h2>Dessert Table</h2>
+            <img src="birthdayImage/dessertTable_bluey.png" width="100%" title="Chairs">
+        </div>
+        
+        <div>
+            <h2><i>Description</i></h2>
+            <hr>
+            <p>For every memory there must be one to share with <br>
+                Invite loved ones to your wedding, have a seat for them, <br>
+                Not only for the moment but in this wonderful life
+            </p>
+        <hr>
+            <div class="productDescription">
+                <h2>Product Details</h2>
+                Three dessert tables that are themed with <br>minecraft elements
+                <p>Board dimensions:
+                        <br>   Table 1 : 40cm x 90cm
+                        <br>   Table 2 : 36cm x 75cm
+                        <br>   Table 3 : 33cm x 60cm
+                </p>
+            </div>
+        </div>
+
+        <div class="purchase">
+            <h2><b><u>Order Now!</u></b></h2>
+            <hr>
+            <form class="purchaseForm">
+                <div>
+                <label for="table">Select a product</label>
+            <select name="table&chair" id ="table" required>
+                <option>-</option>
+                <option value="DessertTablesMC">Dessert Table</option>
+            </select>
+            </div>
+            <label for="tableCountName">Select Quantitiy : </label> 
+            <input type="number" id="tableCount"name="tableCountName" min="1" max="1" placeholder="Quantity" required>
+            <div>
+            <label for="startDate">Start Date :</label>
+            <input type="date" name="startDate" required>
+                <div >
+                    <label for="rentalTime">Time : </label>
+                    <select name="timeFrame" id="rentalTime" required>
+                    <option>-</option>
+                    <option value="Moring">Morning (7am-11am)</option>
+                    <option value="Afternoon">Afternoon (11am-4pm)</option>
+                    <option value="Evening">Evening (4pm-9pm)</option>
+                </select></div>
+            </div>
+            <div>
+            <label for="endDate">Return Date :</label>
+            <input type="date" name="endDate" required>
+            <div>
+                    <label for="rentalTime">Time : </label><select name="timeFrame" id="rentalTime" required>
+                    <option>-</option>
+                    <option value="Moring">Morning (7am-11am)</option>
+                    <option value="Afternoon">Afternoon (11am-4pm)</option>
+                    <option value="Evening">Evening (4pm-9pm)</option>
+                </select></div>
+            </div>
+            <input type="submit" value="Check Availability" >
+            </form>
+        </div>
+        
+    </div>
+    
+    <br><hr><br>
+    <div class="weddingItem">
+        <div class="picture">
+            <h2>Backdrop</h2>
+            <img src="birthdayImage/theme_bluey.png" width="250vw" title="Tables">
+        </div>
+        
+        <div>
+            <h2><i>Description</i></h2>
+            <hr>
+            <p>For every memory there must be one to share with <br>
+                Invite loved ones to your wedding, have a seat for them, <br>
+                Not only for the moment but in this wonderful life
+            </p>
+        <hr>
+            <div class="productDescription">
+                <h2>Product Details</h2>
+                <p>Round cloth background themed with Minecraft characters</p>
+                <p>Board dimensions:
+                        <br>   Board height : 160cm,
+                        <br>   Board width : 20cm,
+                        <br>   Board length : 160cm.
+
+                </p>
+                </div>
+        </div>
+
+        <div class="purchase">
+            <h2><b><u>Order Now!</u></b></h2>
+            <hr>
+            <form class="purchaseForm">
+                <div>
+                <label for="table">Select a product</label>
+            <select name="table&chair" id ="table" required>
+                <option>-</option>
+                <option value="table">Minecraft Backdrop</option>
+            </select>
+            </div>
+            <label for="tableCountName">Select Quantitiy : </label> 
+            <input type="number" id="tableCount"name="tableCountName" min="1" max="1" placeholder="Quantity" required>
+            <div>
+            <label for="startDate">Start Date :</label>
+            <input type="date" name="startDate" min="Now" required>
+                <div >
+                    <label for="rentalTime">Time : </label>
+                    <select name="timeFrame" id="rentalTime" required>
+                    <option>-</option>
+                    <option value="Moring">Morning (7am-11am)</option>
+                    <option value="Afternoon">Afternoon (11am-4pm)</option>
+                    <option value="Evening">Evening (4pm-9pm)</option>
+                </select></div>
+            </div>
+            <div>
+            <label for="endDate">Return Date :</label>
+            <input type="date" name="endDate" required>
+            <div>
+                    <label for="rentalTime">Time : </label><select name="timeFrame" id="rentalTime" required>
+                    <option>-</option>
+                    <option value="Moring">Morning (7am-11am)</option>
+                    <option value="Afternoon">Afternoon (11am-4pm)</option>
+                    <option value="Evening">Evening (4pm-9pm)</option>
+                </select></div>
+            </div>
+            <input type="submit" value="Submit">
+            </form>
+        </div>
+    </div>
+
+    <div class="weddingItem">
+        <div>
+        <h2><u><i>Terms and Conditions</i></u></h2>
+            <ol>
+            <li>
+                <p>Client must pay upfront before collecting product</p></li>
+            <li><p>Product must be returned compliance with pick up condition</p></li>
+            <li><p>A bond of 50-150 will be required to be paid upfront before picking up the products and will be returned 2 days after</p></li>
+            <li><p>An overtime fee will occur with penalties if return time exceeds booking time</p></li>
+        </ol>
+        <label for="myCheckBox">I have read and accepted the terms and conditions</label>
+        <input type="checkbox" id="myCheckBox" name="termsAndConditions" value="read" required>
+        </div>
+        
+    </div>
+</body>
+</html>

@@ -1,0 +1,222 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        :root {
+            --bdclr: rgb(246, 232, 126);
+            --bdclr2: rgb(0, 195, 255);
+            --bdclr3: rgb(132, 209, 44);
+        }
+
+        .mainPage {
+            padding-inline: 50px;
+            background-color: white;
+        }
+
+        .header {
+            background-color: var(--bdclr2);
+            border: 1px solid var(--bdclr);
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+
+        .bannerList {
+            background-color: rgb(0, 195, 255);
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            min-width: fit-content;
+            gap: 30px;
+            padding-inline: 20px;
+            color: wheat;
+        }
+
+        .ProductsGrid {
+            display: grid;
+            grid-template-columns: auto auto;
+            background-color: antiquewhite;
+            padding: 20px;
+            justify-content: space-around;
+            border-radius: 90px;
+            gap: 30px;
+        }
+
+        .Products {
+            background-color: darkgrey;
+            color: beige;
+            display: flex;
+            flex-direction: column;
+            border: 5px solid whitesmoke;
+            border-radius: 9px;
+            cursor: pointer;
+        }
+
+        .bd {
+            border: 5px solid rgb(210, 210, 210);
+            background-color: var(--bdclr2);
+            color: gray;
+        }
+
+        .Products:hover {
+            box-shadow: 0 0 15px 15px rgb(236, 222, 141);
+            border: 5px solid whitesmoke;
+            transform: scale(1.2);
+        }
+
+        .Products img {
+            border: 3px solid white;
+        }
+
+        .Products p {
+            align-self: center;
+            font-style: italic;
+            font-variant: small-caps;
+            font-size: 1.5vw;
+        }
+
+        .brick {
+            display: block;
+            width: 50%;
+            margin: 0 auto;
+            background-color: var(--bdclr);
+            border: 3px solid var(--bdclr2);
+            align-content: center;
+            color: rgb(86, 85, 83);
+            border-radius: 8px;
+            text-align: center;
+        }
+
+            .brick h2 {
+                align-self: center;
+            }
+
+        .desc {
+            padding-inline: 50px;
+            background-color: var(--bdclr3);
+            font-size: 20px;
+            color: white;
+        }
+
+        .BdProductsGrid {
+            display: grid;
+            grid-template-columns: auto auto auto;
+            border: 3px solid burlywood;
+            padding: 20px;
+            justify-content: space-around;
+            border-radius: 90px;
+            gap: 30px;
+            margin: 30px;
+        }
+
+        .BirthdayPage {
+            background-image: url(img/birthdaybg.jpg);
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+
+        .bdList {
+            border: 3px solid var(--bdclr2);
+            padding: 30px;
+            border-radius: 30px;
+        }
+    </style>
+</head>
+<body class="mainPage BirthdayPage">
+    <div class="header Birthday">
+        <ul class="bannerList Birthday">
+            <li>
+                <p>Home</p>
+            </li>
+            <li>
+                <p>
+                    Weddings
+                </p>
+            </li>
+            <li>
+                <p>
+                    Birthdays
+                </p>
+            </li>
+        </ul>
+    </div>
+    <br>
+    <br>
+    <br>
+    <hr>
+    <br>
+    <div class="brick">
+        <h2><u><i>Become the star of the day with our range of</i></u></h2>
+        <h1><u><i>✨ Grand Birthday Themes✨ </i></u></h1>
+    </div>
+    <br>
+    <br>
+    <div class="brick desc">
+        <p>We provide a variety of themes that are the highest of quality</p>
+        <p>Make your childrens' birthday party one to remember</p>
+        <p>With our range of catroon themed birthday decorations and let the kids have a great time!</p>
+    </div>
+    <div class="BdProductsGrid">
+        <div class="bdList">
+            <div class="Products  tables">
+                <img src="/Themes/minecraft.jpg"
+                     width="300vw">
+                <p>Minecraft</p>
+            </div>
+        </div>
+        <div class="bdList">
+            <div class="Products bd tables">
+                <img src="/Themes/babyshark.jpg"
+                     width="300vw">
+                <p>Baby Shark</p>
+            </div>
+        </div>
+        <div class="bdList">
+            <div class="Products bd tables">
+                <img src="/Themes/cocomelon.jpg"
+                     width="300vw">
+                <p>Cocomelon</p>
+            </div>
+        </div>
+        <div class="bdList">
+            <div class="Products bd tables">
+                <img src="/Themes/bluey.jpg"
+                     width="300vmax">
+                <p>Bluey</p>
+            </div>
+        </div>
+
+        <div class="bdList">
+            <div class="Products bd tables">
+                <img src="/Themes/spiderman.jpg"
+                     width="300vmax">
+                <p>Spiderman</p>
+            </div>
+        </div>
+
+        <div class="bdList">
+            <div class="Products bd tables">
+                <img src="/Themes/pony.png"
+                     width="300vmax">
+                <p>My Little Pony</p>
+            </div>
+        </div>
+
+        <div class="bdList">
+            <div class="Products bd tables">
+                <img src="/Themes/frozen.jpg"
+                     width="300vmax">
+                <p>Frozen</p>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

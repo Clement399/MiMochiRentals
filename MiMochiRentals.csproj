@@ -1,0 +1,40 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\img\backdrop.jpg" />
+    <None Include="wwwroot\img\balloons.jpg" />
+    <None Include="wwwroot\img\birthdaybg.jpg" />
+    <None Include="wwwroot\img\birthdaySet.jpg" />
+    <None Include="wwwroot\img\birthday_icon.jpg" />
+    <None Include="wwwroot\img\cateringContainer.jpg" />
+    <None Include="wwwroot\img\chair.jpg" />
+    <None Include="wwwroot\img\Database.png" />
+    <None Include="wwwroot\img\DatabaseV2.png" />
+    <None Include="wwwroot\img\desertTableWedding.jpg" />
+    <None Include="wwwroot\img\dessertTable.jpg" />
+    <None Include="wwwroot\img\floralArch.webp" />
+    <None Include="wwwroot\img\floralBack.webp" />
+    <None Include="wwwroot\img\gazebo.jpg" />
+    <None Include="wwwroot\img\table.jpg" />
+    <None Include="wwwroot\img\themeBackground.jpg" />
+    <None Include="wwwroot\img\wedding.jpg" />
+    <None Include="wwwroot\img\wedding1.jpg" />
+    <None Include="wwwroot\img\wedding2.jpg" />
+    <None Include="wwwroot\img\wedding3.jpg" />
+    <None Include="wwwroot\Themes\babyshark.jpg" />
+    <None Include="wwwroot\Themes\bluey.jpg" />
+    <None Include="wwwroot\Themes\cocomelon.jpg" />
+    <None Include="wwwroot\Themes\frozen.jpg" />
+    <None Include="wwwroot\Themes\minecraft.jpg" />
+    <None Include="wwwroot\Themes\peppapig.png" />
+    <None Include="wwwroot\Themes\pony.png" />
+    <None Include="wwwroot\Themes\spiderman.jpg" />
+  </ItemGroup>
+
+</Project>

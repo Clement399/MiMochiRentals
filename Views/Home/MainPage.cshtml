@@ -1,0 +1,145 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .mainPage {
+            padding-inline: 50px;
+        }
+
+        .header {
+            background-color: bisque;
+            border: 1px solid black;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+
+        .bannerList {
+            background-color: wheat;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            min-width: fit-content;
+            gap: 30px;
+            padding-inline: 20px;
+        }
+
+        .mainPageDescription {
+            background-image: url('https://www.timeoutdubai.com/cloud/timeoutdubai/2021/09/11/qVVpVQzY-Alicew_in_Wonderland_Time_Out_Dubai_Kids-2020.jpg');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+            min-height: 900px;
+            color: aliceblue;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+
+        #Description {
+            justify-self: center;
+            padding-top: 20px;
+            font-size: 56px;
+        }
+
+        .singlePicture {
+            border: 3px solid grey;
+            margin-inline: 500px;
+            padding: 30px;
+            background-color: beige;
+            width: fit-content;
+            color: coral;
+        }
+
+            .singlePicture img {
+                border: 3px solid black;
+            }
+
+        .mainPage {
+            padding-inline: 50px;
+        }
+
+        .mainPageProducts {
+            background-color: whitesmoke;
+            color: burlywood;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+
+        .ProductsGrid {
+            display: grid;
+            grid-template-columns: auto auto;
+            background-color: rgb(60, 88, 116);
+            padding: 20px;
+            justify-content: space-around;
+            border-radius: 90px;
+        }
+
+        .Products {
+            display: flex;
+            flex-direction: row;
+            border: 3px solid whitesmoke;
+            border-radius: 9px;
+        }
+    </style>
+</head>
+<body class="mainPage">
+    <div class="header">
+        <ul class="bannerList">
+            <li>
+                <p>Home</p>
+            </li>
+            <li>
+                <p>
+                    Weddings
+                </p>
+            </li>
+            <li>
+                <p>
+                    Birthdays
+                </p>
+            </li>
+        </ul>
+    </div>
+    <br>
+    <br>
+    <br>
+    <hr>
+    <br>
+    <div class="mainPageDescription">
+        <h1 id="Description"><u><strong>Description</strong></u></h1>
+        <br>
+        <hr>
+        <br>
+        <div class="pictures sliding list">
+            <div class="singlePicture">
+                <p><i><u>Implement this as a sliding list display of past events</u></i></p>
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7QeoxfcsXl-gp2rUxpThORP6gKHV7RkdtEg&s" width="550px">
+                <hr>
+                <div class="pictureDesc"><p>Event name : Zai Zai party</p></div>
+            </div>
+        </div>
+    </div>
+    <fieldset class="mainPageProducts">
+        <h1><u><i>Discover Our Products</i></u></h1>
+        <hr>
+        <br>
+        <div class="ProductsGrid">
+            <div id="Wedding" class="Products">
+                <img src="https://thelane.com/wp-content/uploads/2023/08/DSC08928-scaled.jpg" width="300px">
+                <button>Weddings</button>
+
+            </div>
+            <div id="Birthday" class="Products">
+                <img src="img/birthday_icon.jpg"
+                     width="300px">
+                <button>Birthdays</button>
+            </div>
+
+        </div>
+    </fieldset>
+</body>
+
+                >//src="https://cdn.larrywalshe.com/wp-content/uploads/2022/02/04153550/larry-walshe-luxury-kids-parties.jpg"
+
+</html>
