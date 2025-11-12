@@ -12,10 +12,13 @@ namespace MiMochiRentals.Controllers
         {
             _logger = logger;
         }
+        [HttpGet("Birthday")]
         public IActionResult Birthdays()
         {
             return View();
         }
+        //('api/wedding')
+        [HttpGet ("Wedding")]
         public IActionResult Weddings()
         {
             return View();
