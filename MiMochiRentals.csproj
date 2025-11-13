@@ -7,6 +7,23 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\birthdayImage\dessertTable_babyshark.png" />
+    <None Include="wwwroot\birthdayImage\dessertTable_bluey.png" />
+    <None Include="wwwroot\birthdayImage\dessertTable_cocomelon.png" />
+    <None Include="wwwroot\birthdayImage\dessertTable_minecraft.png" />
+    <None Include="wwwroot\birthdayImage\dessertTable_peppapig.png" />
+    <None Include="wwwroot\birthdayImage\dessertTable_spiderman.png" />
+    <None Include="wwwroot\birthdayImage\standing_Background1.png" />
+    <None Include="wwwroot\birthdayImage\standing_Background2.png" />
+    <None Include="wwwroot\birthdayImage\standing_Background3.png" />
+    <None Include="wwwroot\birthdayImage\standing_Background4.png" />
+    <None Include="wwwroot\birthdayImage\standing_Background5.png" />
+    <None Include="wwwroot\birthdayImage\theme_babyshark.png" />
+    <None Include="wwwroot\birthdayImage\theme_bluey.png" />
+    <None Include="wwwroot\birthdayImage\theme_cocomelon.png" />
+    <None Include="wwwroot\birthdayImage\theme_minecraft.png" />
+    <None Include="wwwroot\birthdayImage\theme_peppapig.png" />
+    <None Include="wwwroot\birthdayImage\theme_spiderman.png" />
     <None Include="wwwroot\img\backdrop.jpg" />
     <None Include="wwwroot\img\balloons.jpg" />
     <None Include="wwwroot\img\birthdaybg.jpg" />

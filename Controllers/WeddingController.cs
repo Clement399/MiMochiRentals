@@ -11,5 +11,41 @@ namespace MiMochiRentals.Controllers
             Console.WriteLine("Changing page to wedding");
             return View("../Home/Weddings");
         }
+        [HttpGet ("tables")]
+        public IActionResult tables()
+        {
+            Console.WriteLine("Rent tables page");
+            return View("tablesChairs");
+        }
+        [HttpGet("arch")]
+        public IActionResult arch()
+        {
+            Console.WriteLine("Rent flower arc page");
+            return View("floralArch");
+        }
+        [HttpGet("backlash")]
+        public IActionResult backlash()
+        {
+            Console.WriteLine("Rent flora;l backboard page");
+            return View("floralBacklash");
+        }
+        [HttpGet("tent")]
+        public IActionResult tent()
+        {
+            Console.WriteLine("Rent tent page");
+            return View("Tent");
+        }
+        [HttpGet("desserttable")]
+        public IActionResult dessertTable()
+        {
+            Console.WriteLine("Rent dessert tables page");
+            return View("dessertTable");
+        }
+        [HttpGet("chaffing")]
+        public IActionResult chaffing()
+        {
+            Console.WriteLine("Rent chaffing dishes page");
+            return View("catering");
+        }
     }
 }
