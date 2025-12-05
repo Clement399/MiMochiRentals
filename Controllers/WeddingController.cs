@@ -26,7 +26,7 @@ namespace MiMochiRentals.Controllers
         [HttpGet("backlash")]
         public IActionResult backlash()
         {
-            Console.WriteLine("Rent flora;l backboard page");
+            Console.WriteLine("Rent floral backboard page");
             return View("floralBacklash");
         }
         [HttpGet("tent")]

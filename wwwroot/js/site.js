@@ -2,6 +2,52 @@
 // for details on configuring this project to bundle and minify static web assets.
 
 // Write your JavaScript code.
+
+const cartItems = [];
+console.log("running Getitems");
+/*if (cartItems.length < 1) {
+    getItems();
+    cartItems.push("alan");
+    console.log(cartItems);
+}*/
+let itemTypes = JSON.parse(sessionStorage.getItem('itemTypes'));
+async function loadItemTypes() {
+    // Check if already loaded
+    let itemTypes = JSON.parse(sessionStorage.getItem('itemTypes'));
+
+    if (!itemTypes) {
+        console.log("Fetching item types from server...");
+
+        // Fetch from your API
+        const response = await fetch('/items/item');
+        itemTypes = await response.json();
+
+        // Cache in sessionStorage
+        sessionStorage.setItem('itemTypes', JSON.stringify(itemTypes));
+        console.log(itemTypes);
+        console.log("Item types loaded and cached");
+    } else {
+        console.log("Using cached item types");
+        console.log(itemTypes);
+    }
+    return itemTypes;
+}
+console.log("Printing Item types : ", itemTypes);
+console.error(itemTypes[2]);
+// Call it when page loads
+loadItemTypes();
+function getItems() {
+    var route = "../items/item";
+    fetch(route)
+        .then(response => {
+            if (!response.ok) throw new Error('Could not get list of items')
+            return response.text();
+        })
+        .then(data => {
+            console.log(data);
+        })
+        .catch(error => console.error('Fetch error: ', error));
+}
 function changePage(status) {
     console.log("Changing page-----" + status);
     var url = "../api/home";
@@ -98,4 +144,9 @@ function birthdayProduct(product) {
             document.write(data);
         })
         .catch(error => console.error('Fetch error:', error));
+}
+
+
+function addToCart(item) {
+    
 }
