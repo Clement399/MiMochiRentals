@@ -3,37 +3,61 @@
 
 // Write your JavaScript code.
 
-const cartItems = [];
+if (typeof cartItems === 'undefined') {
+    var cartItems = [];
+}
 console.log("running Getitems");
+if (typeof itemTypesMap === 'undefined') {
+    var itemTypesMap = null;
+}
+
 /*if (cartItems.length < 1) {
     getItems();
     cartItems.push("alan");
     console.log(cartItems);
 }*/
-let itemTypes = JSON.parse(sessionStorage.getItem('itemTypes'));
+
 async function loadItemTypes() {
-    // Check if already loaded
-    let itemTypes = JSON.parse(sessionStorage.getItem('itemTypes'));
+    const cached = sessionStorage.getItem('itemTypes');
 
-    if (!itemTypes) {
+    if (!cached) {
         console.log("Fetching item types from server...");
-
-        // Fetch from your API
         const response = await fetch('/items/item');
-        itemTypes = await response.json();
+        const itemTypesArray = await response.json();
 
-        // Cache in sessionStorage
-        sessionStorage.setItem('itemTypes', JSON.stringify(itemTypes));
-        console.log(itemTypes);
+        // Convert array to object with code as key
+        itemTypesMap = {};
+        itemTypesArray.forEach(item => {
+            itemTypesMap[item.code] = item;
+        });
+
+        // Store in sessionStorage
+        sessionStorage.setItem('itemTypes', JSON.stringify(itemTypesMap));
         console.log("Item types loaded and cached");
     } else {
         console.log("Using cached item types");
-        console.log(itemTypes);
+        itemTypesMap = JSON.parse(cached);
     }
-    return itemTypes;
+
+    console.log("ItemTypes Map:", itemTypesMap);
+    return itemTypesMap;
 }
-console.log("Printing Item types : ", itemTypes);
-console.error(itemTypes[2]);
+
+// Usage
+(async () => {
+    await loadItemTypes();
+
+    // Access by code
+    const item = itemTypesMap['bbs-cb-001'];
+    console.log("Item with code bbs-cb-001:", item);
+
+    // Or with bracket notation for dynamic codes
+    const code = 'pep-tb-001';
+    const item2 = itemTypesMap[code].bond;
+    console.log("Second item's bond : ", item2)
+})();
+console.log("Printing Item types : ", itemTypesMap);
+console.error(itemTypesMap[2]);
 // Call it when page loads
 loadItemTypes();
 function getItems() {
