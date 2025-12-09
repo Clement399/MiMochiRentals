@@ -23,6 +23,11 @@ namespace MiMochiRentals.Controllers
         {
             return View();
         }
+        [HttpGet("Checkout")]
+        public IActionResult Checkout()
+        {
+            return View();
+        }
         public IActionResult Home()
         {
             return View("MainPage");

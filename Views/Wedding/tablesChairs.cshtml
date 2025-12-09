@@ -151,45 +151,54 @@
 
         <div class="purchase">
             <h2><b><u>Engage wedding today!</u></b></h2>
-            <hr>
-            <form class="purchaseForm">
+            <hr><div class="purchaseForm">
                 <div>
-                    <label for="table">Select a product</label>
-                    <select name="table&chair" id="table" required>
-                        <option>-</option>
-                        <option value="table">Tables</option>
-                        <option value="chair">Chairs</option>
+                    <label for="product">Select a product</label>
+                    <select name="product" id="product">
+                        <option value="">-</option>
+                        <option value="w-table-white-001">Tables</option>
+                        <option value="w-table-blue-001">Tables (Blue)</option>
+                        <option value="w-chair-001">Chairs</option>
                     </select>
                 </div>
-                <label for="tableCountName">Select Quantitiy : </label>
-                <input type="number" id="tableCount" name="tableCountName" min="1" max="90" placeholder="Quantity" required>
+
                 <div>
-                    <label for="startDate">Start Date :</label>
-                    <input type="date" name="startDate" required>
-                    <div>
-                        <label for="rentalTime">Time : </label>
-                        <select name="timeFrame" id="rentalTime" required>
-                            <option>-</option>
-                            <option value="Moring">Morning (7am-11am)</option>
-                            <option value="Afternoon">Afternoon (11am-4pm)</option>
-                            <option value="Evening">Evening (4pm-9pm)</option>
-                        </select>
-                    </div>
+                    <label for="quantity">Select Quantity:</label>
+                    <input type="number" id="quantity" name="quantity" min="1" max="90" placeholder="Quantity">
                 </div>
+
                 <div>
-                    <label for="endDate">Return Date :</label>
-                    <input type="date" name="endDate" required>
-                    <div>
-                        <label for="rentalTime">Time : </label><select name="timeFrame" id="rentalTime" required>
-                            <option>-</option>
-                            <option value="Moring">Morning (7am-11am)</option>
-                            <option value="Afternoon">Afternoon (11am-4pm)</option>
-                            <option value="Evening">Evening (4pm-9pm)</option>
-                        </select>
-                    </div>
+                    <label for="startDate">Start Date:</label>
+                    <input type="date" id="startDate" name="startDate">
                 </div>
-                <input type="submit" value="Submit">
-            </form>
+
+                <div>
+                    <label for="startTime">Start Time:</label>
+                    <select id="startTime" name="startTime">
+                        <option value="">-</option>
+                        <option value="Morning">Morning (7am-11am)</option>
+                        <option value="Afternoon">Afternoon (11am-4pm)</option>
+                        <option value="Evening">Evening (4pm-9pm)</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="endDate">Return Date:</label>
+                    <input type="date" id="endDate" name="endDate">
+                </div>
+
+                <div>
+                    <label for="endTime">Return Time:</label>
+                    <select id="endTime" name="endTime">
+                        <option value="">-</option>
+                        <option value="Morning">Morning (7am-11am)</option>
+                        <option value="Afternoon">Afternoon (11am-4pm)</option>
+                        <option value="Evening">Evening (4pm-9pm)</option>
+                    </select>
+                </div>
+
+                <button id="addToCartBtn" onclick="rent()">Add to Cart</button>
+            </div>
         </div>
         <div class="picture" style="padding-inline: 20px;">
             <h2>Chairs</h2>

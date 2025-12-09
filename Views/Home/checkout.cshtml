@@ -1,0 +1,71 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #body1 {
+            background-color: rgb(92, 135, 121);
+            display: flex;
+            flex-direction: row;
+        }
+
+        .left {
+            margin-left: 0%;
+            width: 70%;
+        }
+
+        .right {
+            width: 30%;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body data-page="checkoutyo">
+    <div id="body1" class="Super">
+        <div class="left">
+            <h1><u>Cart</u></h1>
+            <hr>
+            <div id="checkoutItems">
+                <p>item 1 : price : bond : icon</p>
+            </div>
+
+        </div>
+        <div id="priceCalc" class="right">
+            <div>
+                <p>Item Price : </p>
+                <p id="price"><u> </u> </p>
+            </div>
+            <div>
+                <p>GST <u>10%</u>: </p>
+                <p id="priceGST"><u> </u> </p>
+            </div>
+            <hr>
+            <div>
+                <p id="priceDiscount">Discount :</p>
+                <p> 0$</p>
+            </div>
+
+            <div>
+                <p>Bond : </p>
+                <p><u id="priceBond"> 3000</u> </p>
+            </div>
+            <br>
+            <hr>
+            <div id="finalPrice">
+                <p><strong>Total Price : <p id="priceFinal">50</p></strong></p>
+            </div>
+        </div>
+        <div>
+            <button onclick="clearStorage()">Clear</button>
+        </div>
+    </div>
+    <script src="~/js/site.js"></script>
+</body>
+</html>
