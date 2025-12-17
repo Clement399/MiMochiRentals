@@ -30,5 +30,32 @@ namespace MiMochiRentals.Controllers
 
             return itemType;
         }
+        public string GenerateOrderID(MMContext db)
+        {
+            var maxId = db.Orders
+                .OrderByDescending(o => o.orderID)
+                .Select(o => o.orderID)
+                .FirstOrDefault();
+
+            if (maxId == null)
+                return "ORD001";
+
+            int number = int.Parse(maxId.Substring(3)) + 1;
+            return $"ORD{number:D3}";  // ORD001, ORD002, etc.
+        }
+
+        public void CreateOrder(MMContext db)
+        {
+            // Usage
+            var order = new Order
+            {
+                orderID = GenerateOrderID(db),  // Generate custom ID
+                receiptNo = "REC123",
+                customerID = "CUST001"
+            };
+
+            db.Orders.Add(order);
+            db.SaveChanges();
+        }
     }
 }

@@ -3,6 +3,7 @@ using System;
 using MiMochiRentals.DBContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MiMochiRentals.Migrations
 {
     [DbContext(typeof(MMContext))]
-    partial class MMContextModelSnapshot : ModelSnapshot
+    [Migration("20251217040844_orderID-Item-FK")]
+    partial class orderIDItemFK
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.22");

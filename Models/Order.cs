@@ -1,13 +1,16 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MiMochiRentals.Models
 {
     public class Order
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         [Required] public string orderID {  get; set; } //primary key
 
-        [Required] public string receiptNo { get; set; }
+        [Required][DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public string receiptNo { get; set; }
         [Required] public string customerID {  get; set; } //links to customer table
         public List<Item> items { get; set; } = new();
 

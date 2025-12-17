@@ -1,6 +1,8 @@
 ﻿// Please see documentation at https://learn.microsoft.com/aspnet/core/client-side/bundling-and-minification
 // for details on configuring this project to bundle and minify static web assets.
 
+//const { start } = require("@popperjs/core");
+
 // Write your JavaScript code.
 // Only initialize cart in localStorage if it doesn't exist
 
@@ -191,18 +193,11 @@ function birthdayProduct(product) {
         .catch(error => console.error('Fetch error:', error));
 }
 
-
-function addToCart(item) {
-    
-}
+//not needed because item codes are embedded in html options
 function checkItem(itemName) {
-    var typeKey = "";
-    for (const [key, value] of itemTypesMap) {
-        if (itemName === value.itemType) {
-            console.log("item type found");
-        }
-    }
 }
+//check filled inputs -> checl t&c -> check quantity -> check date valid ->
+//check date and quantity -> add to cart (pushToCart(rentalItem));
 function rent() { //table
     console.log("RENT :::: item");
     const productCode = document.getElementById('product').value;
@@ -256,15 +251,53 @@ function rent() { //table
     };
     var validity = checkValid(rentalItem);
     console.log("Validity of item :", validity);
-    pushToCart(rentalItem);
+    if (validity) {
+        pushToCart(rentalItem)
+    }
+    else {
+        alert("Item not added");
+    }
 }
 function checkValid(rentalItem) {
+    //break time into periods, each day is 3 periods, pay is determined by period, not date
+    //next step: chekc in rental table for rental items
+    var validQty = false;
+    var validTime = false;
     var valid = false;
     const code = rentalItem.productCode;
     var totalQty = itemTypesMap[code].totalQuantity;
+    const startDate = new Date(rentalItem.startDate);
+    const endDate = new Date(rentalItem.endDate);
     console.error("Quantity available", totalQty);
-    if (totalQty > rentalItem.quantity) { valid = true }
+
+    //fetch api, fetch quantity from rented out table
+
+
+    if (totalQty > rentalItem.quantity)
+    {
+        validQty = true;
+    }
     else { alert('Item exceeded limits') }
+
+    //meet condition if both dates pass
+    if (startDate > Date.now() ) {
+        console.error("Valid Date and time");
+        console.log(endDate - startDate);
+        if (endDate >= startDate) {
+            console.log("Return date is after start date");
+            console.log(endDate - startDate);
+            validTime = true;
+        }
+        else {
+            console.error("Wrong date, end date before start date : EndDate :: ", endDate, "| Start Date : ", startDate);
+            alert("Return date shall be after starting Date");
+            return
+        }
+    }
+    else {
+        alert("Please use a correct rental date after today");
+    }
+    valid = validTime && validQty;
     return valid;
 }
 function pushToCart(rentalItem) {
@@ -376,10 +409,12 @@ function loadCheckoutItems() {
             console.log(item.name);
             price = item.price * item.quantity;
             orderPrice += price;
+            let rentingDates = calculateDate(i - 1);
             rows += `<div class="twobox">
-            <div id="checkoutItem ${item.productCode}" class="checkoutItem"><p>${i} :: ${item.name}  |Quantity  ${item.quantity}  |  ${price}  <br>  From Date :${item.startDate} -- ${item.endDate}</p>
+            <div id="checkoutItem ${item.productCode}" class="checkoutItem"><p>${i} :: ${item.name}  |Quantity  ${item.quantity}  | Item Price : ${item.price} --  ${price *rentingDates}  <br>  From Date :${item.startDate} -- ${item.endDate}</p>
+            <p>Renting Dates : ${rentingDates}</p>
             <br> Bond :: ${item.bond}</div>
-            <div><button onclick="removeProduct('${i-1}')">X</button></div>
+            <div><button onclick="removeProduct('${i - 1}')">X</button> <br><br><hr><br><button onclick="calculateDate(${i-1})"> | Calculate Date Diff |</button></div>        
             </div>`
             itemsToOrder.append(div);
             i++;
@@ -410,4 +445,25 @@ function clearStorage() {
     localStorage.setItem("newCart", "[]");
 }
 
- 
+//function to calculate number of Rental days
+function calculateDate(itemNo) {
+    // no need to count period, period only for collection
+    console.clear();
+    let item = cartItems[itemNo];
+    let startDate = new Date(item.startDate);
+    let endDate = new Date(item.endDate);
+    console.error(endDate > startDate);
+    console.log("Start Date : ", startDate, " End Date : ", endDate);
+    let dateDiff = (endDate - startDate)/1000; //milisecond
+    console.log("Date Difference (second) : ", dateDiff);
+    console.log("Date Difference (minute) : ", dateDiff / 60);
+
+    console.log("Date Difference per hour : ", dateDiff / 3600);
+
+    console.log("Date Difference per day : ", dateDiff / 24 / 3600);
+    const rentalDays = dateDiff / 24 / 3600;
+    if (rentalDays < 1) {
+        return 1;
+    }
+    return rentalDays;
+}

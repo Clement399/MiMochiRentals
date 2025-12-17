@@ -10,7 +10,7 @@ namespace MiMochiRentals.DBContext
         {
         }
 
-        public DbSet<Item> Items { get; set; }
+        public DbSet<Item> Items => Set<Item>();
         public DbSet<ItemType> Types { get; set; }
         public DbSet<Order> Orders { get; set; }
         /*
@@ -34,7 +34,18 @@ namespace MiMochiRentals.DBContext
             //130 for full set
 
 
-
+            //TODAY :: 12/11/2025 use navigation properties?
+            mb.Entity<Item>()
+                .HasOne<ItemType>()
+                .WithMany()
+                .HasForeignKey(i => i.ItemTypeCode)
+                .HasPrincipalKey(t => t.code)
+                .OnDelete(DeleteBehavior.Restrict);
+            mb.Entity<Order>()
+                 .HasMany<Item>(o => o.items)
+                 .WithOne()
+                 .HasForeignKey(i => i.orderID)  // FK in Item table
+                 .OnDelete(DeleteBehavior.Cascade); ;
 
             //item seeding : wedding : 13 items
 
