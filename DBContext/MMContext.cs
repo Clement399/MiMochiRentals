@@ -33,6 +33,9 @@ namespace MiMochiRentals.DBContext
 
             //130 for full set
 
+            //seed orders
+            mb.Entity<Order>().HasData(SeedOrders.GetOrders());
+            mb.Entity<Item>().HasData(SeedItems.GetItems());
 
             //TODAY :: 12/11/2025 use navigation properties?
             mb.Entity<Item>()

@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MiMochiRentals.Migrations
 {
     [DbContext(typeof(MMContext))]
-    [Migration("20251205034058_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20251217154816_OrderIDInt_InitialCreate")]
+    partial class OrderIDInt_InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -36,8 +36,11 @@ namespace MiMochiRentals.Migrations
                     b.Property<DateTime>("endDate")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("orderID")
-                        .HasColumnType("TEXT");
+                    b.Property<int>("endPeriod")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("orderID")
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("price")
                         .HasColumnType("INTEGER");
@@ -48,7 +51,13 @@ namespace MiMochiRentals.Migrations
                     b.Property<DateTime>("startDate")
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("startPeriod")
+                        .HasMaxLength(3)
+                        .HasColumnType("INTEGER");
+
                     b.HasKey("itemId");
+
+                    b.HasIndex("ItemTypeCode");
 
                     b.HasIndex("itemId")
                         .IsUnique();
@@ -696,8 +705,9 @@ namespace MiMochiRentals.Migrations
 
             modelBuilder.Entity("MiMochiRentals.Models.Order", b =>
                 {
-                    b.Property<string>("orderID")
-                        .HasColumnType("TEXT");
+                    b.Property<int>("orderID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("bond")
                         .HasColumnType("INTEGER");
@@ -705,9 +715,8 @@ namespace MiMochiRentals.Migrations
                     b.Property<bool>("bondReturned")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("customerID")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
+                    b.Property<int>("customerID")
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("orderVal")
                         .HasColumnType("INTEGER");
@@ -715,9 +724,9 @@ namespace MiMochiRentals.Migrations
                     b.Property<bool>("paid")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("receiptNo")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
+                    b.Property<int>("receiptNo")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("orderID");
 
@@ -729,9 +738,17 @@ namespace MiMochiRentals.Migrations
 
             modelBuilder.Entity("MiMochiRentals.Models.Item", b =>
                 {
+                    b.HasOne("MiMochiRentals.Models.ItemType", null)
+                        .WithMany()
+                        .HasForeignKey("ItemTypeCode")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
                     b.HasOne("MiMochiRentals.Models.Order", null)
                         .WithMany("items")
-                        .HasForeignKey("orderID");
+                        .HasForeignKey("orderID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("MiMochiRentals.Models.Order", b =>

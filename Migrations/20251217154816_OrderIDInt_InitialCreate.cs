@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace MiMochiRentals.Migrations
 {
     /// <inheritdoc />
-    public partial class Initial : Migration
+    public partial class OrderIDInt_InitialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -17,9 +17,10 @@ namespace MiMochiRentals.Migrations
                 name: "Orders",
                 columns: table => new
                 {
-                    orderID = table.Column<string>(type: "TEXT", nullable: false),
-                    receiptNo = table.Column<string>(type: "TEXT", nullable: false),
-                    customerID = table.Column<string>(type: "TEXT", nullable: false),
+                    orderID = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    receiptNo = table.Column<int>(type: "INTEGER", nullable: false),
+                    customerID = table.Column<int>(type: "INTEGER", nullable: false),
                     orderVal = table.Column<int>(type: "INTEGER", nullable: false),
                     bond = table.Column<int>(type: "INTEGER", nullable: false),
                     paid = table.Column<bool>(type: "INTEGER", nullable: false),
@@ -59,12 +60,14 @@ namespace MiMochiRentals.Migrations
                     itemId = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     ItemTypeCode = table.Column<string>(type: "TEXT", nullable: false),
+                    orderID = table.Column<int>(type: "INTEGER", nullable: false),
                     quantity = table.Column<int>(type: "INTEGER", nullable: false),
                     price = table.Column<int>(type: "INTEGER", nullable: false),
                     bond = table.Column<int>(type: "INTEGER", nullable: false),
                     startDate = table.Column<DateTime>(type: "TEXT", nullable: false),
                     endDate = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    orderID = table.Column<string>(type: "TEXT", nullable: true)
+                    startPeriod = table.Column<int>(type: "INTEGER", maxLength: 3, nullable: false),
+                    endPeriod = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -73,7 +76,14 @@ namespace MiMochiRentals.Migrations
                         name: "FK_Items_Orders_orderID",
                         column: x => x.orderID,
                         principalTable: "Orders",
-                        principalColumn: "orderID");
+                        principalColumn: "orderID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Items_Types_ItemTypeCode",
+                        column: x => x.ItemTypeCode,
+                        principalTable: "Types",
+                        principalColumn: "code",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.InsertData(
@@ -129,6 +139,11 @@ namespace MiMochiRentals.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
+                name: "IX_Items_ItemTypeCode",
+                table: "Items",
+                column: "ItemTypeCode");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Items_orderID",
                 table: "Items",
                 column: "orderID");
@@ -153,10 +168,10 @@ namespace MiMochiRentals.Migrations
                 name: "Items");
 
             migrationBuilder.DropTable(
-                name: "Types");
+                name: "Orders");
 
             migrationBuilder.DropTable(
-                name: "Orders");
+                name: "Types");
         }
     }
 }

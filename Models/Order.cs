@@ -6,12 +6,13 @@ namespace MiMochiRentals.Models
     public class Order
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        [Required] public string orderID {  get; set; } //primary key
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Required] public int orderID {  get; set; } //primary key
 
-        [Required][DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public string receiptNo { get; set; }
-        [Required] public string customerID {  get; set; } //links to customer table
+        //[Required][DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        //receiptNo will be same as orderID, just with prefix 'Rec-001200' in front
+        public int receiptNo { get; set; }
+        [Required] public int customerID {  get; set; } //links to customer table
         public List<Item> items { get; set; } = new();
 
         //start date and end date is already included inside item

@@ -3,6 +3,7 @@ using System;
 using MiMochiRentals.DBContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MiMochiRentals.Migrations
 {
     [DbContext(typeof(MMContext))]
-    partial class MMContextModelSnapshot : ModelSnapshot
+    [Migration("20251217161229_navigationProp")]
+    partial class navigationProp
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.22");
@@ -39,6 +42,9 @@ namespace MiMochiRentals.Migrations
                     b.Property<int>("orderID")
                         .HasColumnType("INTEGER");
 
+                    b.Property<int?>("orderID1")
+                        .HasColumnType("INTEGER");
+
                     b.Property<int>("price")
                         .HasColumnType("INTEGER");
 
@@ -49,6 +55,7 @@ namespace MiMochiRentals.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<int>("startPeriod")
+                        .HasMaxLength(3)
                         .HasColumnType("INTEGER");
 
                     b.HasKey("itemId");
@@ -59,6 +66,8 @@ namespace MiMochiRentals.Migrations
                         .IsUnique();
 
                     b.HasIndex("orderID");
+
+                    b.HasIndex("orderID1");
 
                     b.ToTable("Items");
 
@@ -929,6 +938,12 @@ namespace MiMochiRentals.Migrations
                         .HasForeignKey("orderID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("MiMochiRentals.Models.Order", "Order")
+                        .WithMany()
+                        .HasForeignKey("orderID1");
+
+                    b.Navigation("Order");
                 });
 
             modelBuilder.Entity("MiMochiRentals.Models.Order", b =>

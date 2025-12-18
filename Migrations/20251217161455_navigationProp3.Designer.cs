@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MiMochiRentals.Migrations
 {
     [DbContext(typeof(MMContext))]
-    [Migration("20251217040844_orderID-Item-FK")]
-    partial class orderIDItemFK
+    [Migration("20251217161455_navigationProp3")]
+    partial class navigationProp3
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -36,13 +36,11 @@ namespace MiMochiRentals.Migrations
                     b.Property<DateTime>("endDate")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("orderID")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
+                    b.Property<int>("endPeriod")
+                        .HasColumnType("INTEGER");
 
-                    b.Property<string>("orderId")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
+                    b.Property<int>("orderID")
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("price")
                         .HasColumnType("INTEGER");
@@ -52,6 +50,10 @@ namespace MiMochiRentals.Migrations
 
                     b.Property<DateTime>("startDate")
                         .HasColumnType("TEXT");
+
+                    b.Property<int>("startPeriod")
+                        .HasMaxLength(3)
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("itemId");
 
@@ -63,6 +65,138 @@ namespace MiMochiRentals.Migrations
                     b.HasIndex("orderID");
 
                     b.ToTable("Items");
+
+                    b.HasData(
+                        new
+                        {
+                            itemId = 1,
+                            ItemTypeCode = "w-set-001",
+                            bond = 100,
+                            endDate = new DateTime(2025, 5, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            endPeriod = 2,
+                            orderID = 1,
+                            price = 900,
+                            quantity = 1,
+                            startDate = new DateTime(2025, 5, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            startPeriod = 1
+                        },
+                        new
+                        {
+                            itemId = 2,
+                            ItemTypeCode = "w-chair-001",
+                            bond = 50,
+                            endDate = new DateTime(2025, 5, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            endPeriod = 2,
+                            orderID = 1,
+                            price = 3,
+                            quantity = 50,
+                            startDate = new DateTime(2025, 5, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            startPeriod = 1
+                        },
+                        new
+                        {
+                            itemId = 3,
+                            ItemTypeCode = "blu-cb-001",
+                            bond = 50,
+                            endDate = new DateTime(2025, 6, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            endPeriod = 2,
+                            orderID = 2,
+                            price = 50,
+                            quantity = 1,
+                            startDate = new DateTime(2025, 6, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            startPeriod = 2
+                        },
+                        new
+                        {
+                            itemId = 4,
+                            ItemTypeCode = "blu-dt-001",
+                            bond = 100,
+                            endDate = new DateTime(2025, 6, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            endPeriod = 2,
+                            orderID = 2,
+                            price = 100,
+                            quantity = 1,
+                            startDate = new DateTime(2025, 6, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            startPeriod = 2
+                        },
+                        new
+                        {
+                            itemId = 5,
+                            ItemTypeCode = "w-tent-001",
+                            bond = 100,
+                            endDate = new DateTime(2025, 7, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            endPeriod = 1,
+                            orderID = 3,
+                            price = 60,
+                            quantity = 2,
+                            startDate = new DateTime(2025, 7, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            startPeriod = 1
+                        },
+                        new
+                        {
+                            itemId = 6,
+                            ItemTypeCode = "w-floralArch-001",
+                            bond = 100,
+                            endDate = new DateTime(2025, 7, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            endPeriod = 1,
+                            orderID = 3,
+                            price = 160,
+                            quantity = 1,
+                            startDate = new DateTime(2025, 7, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            startPeriod = 1
+                        },
+                        new
+                        {
+                            itemId = 7,
+                            ItemTypeCode = "mc-cb-001",
+                            bond = 50,
+                            endDate = new DateTime(2025, 8, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            endPeriod = 3,
+                            orderID = 4,
+                            price = 50,
+                            quantity = 1,
+                            startDate = new DateTime(2025, 8, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            startPeriod = 1
+                        },
+                        new
+                        {
+                            itemId = 8,
+                            ItemTypeCode = "mc-dt-001",
+                            bond = 1,
+                            endDate = new DateTime(2025, 8, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            endPeriod = 3,
+                            orderID = 4,
+                            price = 1,
+                            quantity = 1,
+                            startDate = new DateTime(2025, 8, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            startPeriod = 1
+                        },
+                        new
+                        {
+                            itemId = 9,
+                            ItemTypeCode = "mlp-ra-003",
+                            bond = 100,
+                            endDate = new DateTime(2025, 9, 6, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            endPeriod = 2,
+                            orderID = 5,
+                            price = 120,
+                            quantity = 1,
+                            startDate = new DateTime(2025, 9, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            startPeriod = 1
+                        },
+                        new
+                        {
+                            itemId = 10,
+                            ItemTypeCode = "mlp-tb-001",
+                            bond = 50,
+                            endDate = new DateTime(2025, 9, 6, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            endPeriod = 2,
+                            orderID = 5,
+                            price = 60,
+                            quantity = 1,
+                            startDate = new DateTime(2025, 9, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            startPeriod = 1
+                        });
                 });
 
             modelBuilder.Entity("MiMochiRentals.Models.ItemType", b =>
@@ -703,8 +837,9 @@ namespace MiMochiRentals.Migrations
 
             modelBuilder.Entity("MiMochiRentals.Models.Order", b =>
                 {
-                    b.Property<string>("orderID")
-                        .HasColumnType("TEXT");
+                    b.Property<int>("orderID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("bond")
                         .HasColumnType("INTEGER");
@@ -712,9 +847,8 @@ namespace MiMochiRentals.Migrations
                     b.Property<bool>("bondReturned")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("customerID")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
+                    b.Property<int>("customerID")
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("orderVal")
                         .HasColumnType("INTEGER");
@@ -722,9 +856,9 @@ namespace MiMochiRentals.Migrations
                     b.Property<bool>("paid")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("receiptNo")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
+                    b.Property<int>("receiptNo")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("orderID");
 
@@ -732,6 +866,58 @@ namespace MiMochiRentals.Migrations
                         .IsUnique();
 
                     b.ToTable("Orders");
+
+                    b.HasData(
+                        new
+                        {
+                            orderID = 1,
+                            bond = 5000,
+                            bondReturned = false,
+                            customerID = 1,
+                            orderVal = 15000,
+                            paid = true,
+                            receiptNo = 1
+                        },
+                        new
+                        {
+                            orderID = 2,
+                            bond = 3000,
+                            bondReturned = true,
+                            customerID = 1,
+                            orderVal = 8500,
+                            paid = true,
+                            receiptNo = 2
+                        },
+                        new
+                        {
+                            orderID = 3,
+                            bond = 7500,
+                            bondReturned = false,
+                            customerID = 3,
+                            orderVal = 22000,
+                            paid = false,
+                            receiptNo = 3
+                        },
+                        new
+                        {
+                            orderID = 4,
+                            bond = 4000,
+                            bondReturned = true,
+                            customerID = 2,
+                            orderVal = 12000,
+                            paid = true,
+                            receiptNo = 4
+                        },
+                        new
+                        {
+                            orderID = 5,
+                            bond = 6000,
+                            bondReturned = false,
+                            customerID = 3,
+                            orderVal = 18500,
+                            paid = true,
+                            receiptNo = 5
+                        });
                 });
 
             modelBuilder.Entity("MiMochiRentals.Models.Item", b =>
