@@ -250,6 +250,7 @@ function rent() { //table
         name
     };
     var validity = checkValid(rentalItem);
+    console.log("Going to check item");
     console.log("Validity of item :", validity);
     if (validity) {
         pushToCart(rentalItem)
@@ -297,8 +298,66 @@ function checkValid(rentalItem) {
     else {
         alert("Please use a correct rental date after today");
     }
-    valid = validTime && validQty;
+    
+    
+    valid = validTime && validQty && checkRentedDate(rentalItem);
     return valid;
+}
+
+function checkRentedDate(rentalItem) {
+    let valid = false;
+    const code = rentalItem.productCode;
+    console.log("checking validity of item : ", rentalItem.productCode);
+    //since we have already checked that productCode has to be one of Item Type Codes, no checking needs to be done here
+    //product code is hardcoded inside each product's attribute so we can know and use it gracefully
+
+    var route = `items/item/renting/${code}`;
+    fetch(route).then(response => {
+        if (!response.ok) {
+            throw new Error("Network response was not ok !");
+        }
+        return response.json();
+    }).then(response2 => {
+        console.log("Items rented ::::::");
+        console.log(response2);
+
+        var itemsRented = response2;
+        let rented = 0;
+        console.error("Checking days rented");
+        itemsRented.forEach((i) => {
+            console.log(`Start : ${i.startDate} End Date : ${i.endDate} | Quantity : ${i.quantity}`);
+
+            //check conditions
+            if ((rentalItem.startDate <= i.endDate) && (rentalItem.endDate >= i.startDate)){
+
+                console.log(`Item Rented out : Period (${i.startDate}--${i.endDate} | Quantity : ${i.quantity}`);
+                rented += i.quantity;
+
+            }
+
+        });
+        //now i need to JSON parse this thing into a list of items to use
+        //nope , it is already valid Json as we did not return response.text() in the first place
+
+        //check quantity available
+        var itemType = itemTypesMap[code];
+        console.log(itemType);
+        let totalQuantity = itemTypesMap[code].totalQuantity;
+        console.log(`Total quantity of product : ${totalQuantity}, rented out on date : ${rented} | to rent : ${rentalItem.quantity}`);
+        let avail = itemTypesMap[code].totalQuantity - rented;
+
+        //bug 80 : tried to access non existent field of itemType.quantity, should be itemType.totalQuantity
+
+        if (avail > rentalItem.quantity) {
+            console.log("Item quantity still enough to rent ");
+            valid = true;
+        }
+        else {
+            alert("Item quantity already occupied on day, available left : ", avail);
+            console.log("Item quantity not enough to rent");
+        }
+        return valid;
+    }).catch (error => console.error('Fetch error:', error));
 }
 function pushToCart(rentalItem) {
     cartItems.push(rentalItem);
@@ -411,11 +470,12 @@ function loadCheckoutItems() {
             orderPrice += price;
             let rentingDates = calculateDate(i - 1);
             rows += `<div class="twobox">
-            <div id="checkoutItem ${item.productCode}" class="checkoutItem"><p>${i} :: ${item.name}  |Quantity  ${item.quantity}  | Item Price : ${item.price} --  ${price *rentingDates}  <br>  From Date :${item.startDate} -- ${item.endDate}</p>
+            <div id="checkoutItem ${item.productCode}" class="checkoutItem"><img src="../img/chair.jpg"> <p>${i} :: ${item.name}  |Quantity  ${item.quantity}  | Item Price : ${item.price} --  ${price *rentingDates}  <br>  From Date :${item.startDate} -- ${item.endDate}</p>
             <p>Renting Dates : ${rentingDates}</p>
-            <br> Bond :: ${item.bond}</div>
-            <div><button onclick="removeProduct('${i - 1}')">X</button> <br><br><hr><br><button onclick="calculateDate(${i-1})"> | Calculate Date Diff |</button></div>        
-            </div>`
+            <br> Bond :: ${item.bond}
+            <div><button onclick="removeProduct('${i - 1}')">X</button> <br><br><hr><br><button onclick="calculateDate(${i - 1})"> | Calculate Date Diff |</button></div>        
+            </div></div>
+            `
             itemsToOrder.append(div);
             i++;
             if (item.bond > orderBond) {

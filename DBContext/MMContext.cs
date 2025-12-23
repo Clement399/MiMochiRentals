@@ -29,7 +29,7 @@ namespace MiMochiRentals.DBContext
             
             mb.Entity<Item>().HasIndex(u => u.itemId).IsUnique();
             mb.Entity<ItemType>().HasIndex(u => u.code).IsUnique();
-            mb.Entity<Order>().HasIndex(u => u.receiptNo).IsUnique();
+            mb.Entity<Order>().HasIndex(u => u.orderID).IsUnique();
 
             //130 for full set
 

@@ -3,6 +3,7 @@ using System;
 using MiMochiRentals.DBContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MiMochiRentals.Migrations
 {
     [DbContext(typeof(MMContext))]
-    partial class MMContextModelSnapshot : ModelSnapshot
+    [Migration("20251218125410_ReceiptNo")]
+    partial class ReceiptNo
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.22");
@@ -852,9 +855,12 @@ namespace MiMochiRentals.Migrations
                     b.Property<bool>("paid")
                         .HasColumnType("INTEGER");
 
+                    b.Property<int>("receiptNo")
+                        .HasColumnType("INTEGER");
+
                     b.HasKey("orderID");
 
-                    b.HasIndex("orderID")
+                    b.HasIndex("receiptNo")
                         .IsUnique();
 
                     b.ToTable("Orders");
@@ -867,7 +873,8 @@ namespace MiMochiRentals.Migrations
                             bondReturned = false,
                             customerID = 1,
                             orderVal = 15000,
-                            paid = true
+                            paid = true,
+                            receiptNo = 1
                         },
                         new
                         {
@@ -876,7 +883,8 @@ namespace MiMochiRentals.Migrations
                             bondReturned = true,
                             customerID = 1,
                             orderVal = 8500,
-                            paid = true
+                            paid = true,
+                            receiptNo = 2
                         },
                         new
                         {
@@ -885,7 +893,8 @@ namespace MiMochiRentals.Migrations
                             bondReturned = false,
                             customerID = 3,
                             orderVal = 22000,
-                            paid = false
+                            paid = false,
+                            receiptNo = 3
                         },
                         new
                         {
@@ -894,7 +903,8 @@ namespace MiMochiRentals.Migrations
                             bondReturned = true,
                             customerID = 2,
                             orderVal = 12000,
-                            paid = true
+                            paid = true,
+                            receiptNo = 4
                         },
                         new
                         {
@@ -903,7 +913,8 @@ namespace MiMochiRentals.Migrations
                             bondReturned = false,
                             customerID = 3,
                             orderVal = 18500,
-                            paid = true
+                            paid = true,
+                            receiptNo = 5
                         });
                 });
 

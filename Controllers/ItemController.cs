@@ -82,7 +82,16 @@ namespace MiMochiRentals.Controllers
             {
                 _context.Orders.Add(order);
                 await _context.SaveChangesAsync();
-            }catch (Exception ex)
+
+                //Additionals, to make it clearer
+
+                Console.WriteLine("Adding order -- : ORD000"+ order.orderID);
+                foreach (Item i in order.items)
+                {
+                    Console.WriteLine("Adding item : "+ i.ItemTypeCode +" Period :"+ i.startDate +" to "+ i.endDate);
+                }
+            }
+            catch (Exception ex)
             {
                 return NotFound("Order not saved to database");
             }
@@ -134,6 +143,7 @@ namespace MiMochiRentals.Controllers
         [HttpGet("renting/{Code}")]
         public async Task<ActionResult<IEnumerable<Item>>> GetItemsRentingAsync(string Code)
         {
+            Console.WriteLine("Finding times "+ Code +" is rented");
             List<Item> rentedItems = await _context.Items.Where(i => i.ItemTypeCode == Code).ToListAsync();
             int j = 1;
             foreach (Item item in rentedItems)
@@ -151,6 +161,8 @@ namespace MiMochiRentals.Controllers
         [HttpGet("renting")]
         public async Task<ActionResult<IEnumerable<Item>>> GetRentedItems()
         {
+
+            Console.WriteLine("Finding times and items is rented");
             List<Item> allRented = await _context.Items.ToListAsync();
 
             if (!allRented.Any())
@@ -174,6 +186,7 @@ namespace MiMochiRentals.Controllers
             return Ok("Item :"+ item +" added");
         }
         [HttpPost("saveOrder")]
+        //Not needed, as items will be directly added
         public async Task<IActionResult> AddToRentOrder([FromBody] Order order, MMContext db)
         {
             try

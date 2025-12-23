@@ -11,7 +11,7 @@ namespace MiMochiRentals.Models
 
         //[Required][DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         //receiptNo will be same as orderID, just with prefix 'Rec-001200' in front
-        public int receiptNo { get; set; }
+        //public int receiptNo { get; set; }
         [Required] public int customerID {  get; set; } //links to customer table
         public List<Item> items { get; set; } = new();
 
