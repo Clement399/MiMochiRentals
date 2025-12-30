@@ -198,7 +198,7 @@ function checkItem(itemName) {
 }
 //check filled inputs -> checl t&c -> check quantity -> check date valid ->
 //check date and quantity -> add to cart (pushToCart(rentalItem));
-function rent() { //table
+async function rent() { //table
     console.log("RENT :::: item");
     const productCode = document.getElementById('product').value;
     console.error("Product Code :", productCode);
@@ -249,7 +249,7 @@ function rent() { //table
         bond,
         name
     };
-    var validity = checkValid(rentalItem);
+    var validity = await checkValid(rentalItem);
     console.log("Going to check item");
     console.log("Validity of item :", validity);
     if (validity) {
@@ -259,7 +259,7 @@ function rent() { //table
         alert("Item not added");
     }
 }
-function checkValid(rentalItem) {
+async function checkValid(rentalItem) {
     //break time into periods, each day is 3 periods, pay is determined by period, not date
     //next step: chekc in rental table for rental items
     var validQty = false;
@@ -299,67 +299,49 @@ function checkValid(rentalItem) {
         alert("Please use a correct rental date after today");
     }
 
-    var isValid = checkRentedDate(rentalItem);
-    console.error(isValid);
-    valid = validTime && validQty ;
+    var isValid = await checkRentedDate(rentalItem);
+    valid = validTime && validQty && isValid;
+    console.error("Item is avaliable after database check :",isValid);
     return valid;
 }
 
 async function checkRentedDate(rentalItem) {
-    let valid = false;
     const code = rentalItem.productCode;
-    console.log("checking validity of item : ", rentalItem.productCode);
-    //since we have already checked that productCode has to be one of Item Type Codes, no checking needs to be done here
-    //product code is hardcoded inside each product's attribute so we can know and use it gracefully
+    const route = `items/item/renting/${code}`;
 
-    var route = `items/item/renting/${code}`;
-    await fetch(route).then(response => {
-        if (!response.ok) {
-            throw new Error("Network response was not ok !");
-        }
-        return response.json();
-    }).then(response2 => {
-        console.log("Items rented ::::::");
-        console.log(response2);
+    try {
+        // 1. Wait for the server to respond
+        const response = await fetch(route);
+        if (!response.ok) throw new Error("Network error");
 
-        var itemsRented = response2;
-        let rented = 0;
-        console.error("Checking days rented");
+        // 2. Wait for the data to be parsed
+        const itemsRented = await response.json();
+
+        let rentedTotal = 0;
+
+        // 3. Process the logic
         itemsRented.forEach((i) => {
-            console.log(`Start : ${i.startDate} End Date : ${i.endDate} | Quantity : ${i.quantity}`);
-
-            //check conditions
-            if ((rentalItem.startDate <= i.endDate) && (rentalItem.endDate >= i.startDate)){
-
-                console.log(`Item Rented out : Period (${i.startDate}--${i.endDate} | Quantity : ${i.quantity}`);
-                rented += i.quantity;
-
+            // Check for date overlaps
+            if ((rentalItem.startDate <= i.endDate) && (rentalItem.endDate >= i.startDate)) {
+                rentedTotal += i.quantity;
             }
-
         });
-        //now i need to JSON parse this thing into a list of items to use
-        //nope , it is already valid Json as we did not return response.text() in the first place
 
-        //check quantity available
-        var itemType = itemTypesMap[code];
-        console.log(itemType);
-        let totalQuantity = itemTypesMap[code].totalQuantity;
-        console.log(`Total quantity of product : ${totalQuantity}, rented out on date : ${rented} | to rent : ${rentalItem.quantity}`);
-        let avail = itemTypesMap[code].totalQuantity - rented;
+        const itemType = itemTypesMap[code];
+        const avail = itemType.totalQuantity - rentedTotal;
 
-        //bug 80 : tried to access non existent field of itemType.quantity, should be itemType.totalQuantity
-
-        if (avail > rentalItem.quantity) {
-            console.log("Item quantity still enough to rent ");
-            valid = true;
-            return valid;
+        if (avail >= rentalItem.quantity) {
+            console.log("Success: Quantity available");
+            return true; // Execution stops here and returns true
+        } else {
+            alert(`Insufficient stock. Available: ${avail}`);
+            return false;
         }
-        else {
-            alert("Item quantity already occupied on day, available left : ", avail);
-            console.log("Item quantity not enough to rent");
-        }
-    }).catch(error => console.error('Fetch error:', error));
-    return valid;
+
+    } catch (error) {
+        console.error('Validation failed:', error);
+        return false;
+    }
 }
 function pushToCart(rentalItem) {
     cartItems.push(rentalItem);
