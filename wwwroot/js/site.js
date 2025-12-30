@@ -298,13 +298,14 @@ function checkValid(rentalItem) {
     else {
         alert("Please use a correct rental date after today");
     }
-    
-    
-    valid = validTime && validQty && checkRentedDate(rentalItem);
+
+    var isValid = checkRentedDate(rentalItem);
+    console.error(isValid);
+    valid = validTime && validQty ;
     return valid;
 }
 
-function checkRentedDate(rentalItem) {
+async function checkRentedDate(rentalItem) {
     let valid = false;
     const code = rentalItem.productCode;
     console.log("checking validity of item : ", rentalItem.productCode);
@@ -312,7 +313,7 @@ function checkRentedDate(rentalItem) {
     //product code is hardcoded inside each product's attribute so we can know and use it gracefully
 
     var route = `items/item/renting/${code}`;
-    fetch(route).then(response => {
+    await fetch(route).then(response => {
         if (!response.ok) {
             throw new Error("Network response was not ok !");
         }
@@ -351,13 +352,14 @@ function checkRentedDate(rentalItem) {
         if (avail > rentalItem.quantity) {
             console.log("Item quantity still enough to rent ");
             valid = true;
+            return valid;
         }
         else {
             alert("Item quantity already occupied on day, available left : ", avail);
             console.log("Item quantity not enough to rent");
         }
-        return valid;
-    }).catch (error => console.error('Fetch error:', error));
+    }).catch(error => console.error('Fetch error:', error));
+    return valid;
 }
 function pushToCart(rentalItem) {
     cartItems.push(rentalItem);
