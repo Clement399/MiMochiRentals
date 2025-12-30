@@ -21,10 +21,12 @@ namespace MiMochiRentals.Models
         public int bond {  get; set; }
         public bool paid {  get; set; }
 
+        public string payment { get; set; } = "pending";
+
         //to check whether bond is returned
         public bool bondReturned { get; set; }
 
-    
+        
         private void addItem(Item item)
         {
             items.Add(item);
