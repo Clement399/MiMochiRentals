@@ -11,38 +11,6 @@ using Stripe;
 
 namespace MiMochiRentals.Controllers
 {
-    
-        public class Program
-        {
-            public static void Main(string[] args)
-            {
-                WebHost.CreateDefaultBuilder(args)
-                  .UseUrls("http://0.0.0.0:4242")
-                  .UseWebRoot("public")
-                  .UseStartup<Startup>()
-                  .Build()
-                  .Run();
-            }
-        }
-
-        public class Startup
-        {
-            public void ConfigureServices(IServiceCollection services)
-            {
-                services.AddMvc().AddNewtonsoftJson();
-            }
-
-            public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-            {
-
-                // This is your test secret API key.
-                StripeConfiguration.ApiKey = "sk_test_51ShRUR1SjyxQIlE1tQMeTnJlQ4TwoksiRXtxnm4E0KnsYpWgV6oh6fXobmddyEtPhj0gWHEX5GYsYuuTMaDDtYQZ00hdRhAiWj";
-                if (env.IsDevelopment()) app.UseDeveloperExceptionPage();
-                app.UseRouting();
-                app.UseStaticFiles();
-                app.UseEndpoints(endpoints => endpoints.MapControllers());
-            }
-        }
 
         [Route("create-payment-intent")]
         [ApiController]

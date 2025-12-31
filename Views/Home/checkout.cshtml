@@ -26,6 +26,13 @@
             margin-left: 10px;
         }
     </style>
+
+
+    <script src="https://js.stripe.com/clover/stripe.js"></script>
+    <script src="~/js/checkout.js"></script>
+
+    <script src="~/js/site.js"></script>
+    
 </head>
 <body data-page="checkoutyo">
     <div id="body1" class="Super">
@@ -61,17 +68,28 @@
             <div id="finalPrice">
                 <p><strong>Total Price : <p id="priceFinal">50</p></strong></p>
             </div>
-        </div>
-        <div>
-            <button onclick="clearStorage()">Clear</button>
-        </div>
-        <br />
-        <hr />
-        <br />
-        <div>
-            <div id="stripe"></div>
+            <br />
+            <div>
+                <button onclick="clearStorage()">Clear</button>
+            </div>
+            <br />
+            <hr />
+            <br />
+            <div>
+                <div id="stripe"><button>Hello Streiepe</button></div>
+                <form id="payment-form">
+                    <div id="payment-element">
+                        <!--Stripe.js injects the Payment Element-->
+                    </div>
+                    <button id="submit">
+                        <div class="spinner hidden" id="spinner"></div>
+                        <span id="button-text">Pay now</span>
+                    </button>
+                    <div id="payment-message" class="hidden"></div>
+                </form>
+            </div>
         </div>
     </div>
-    <script src="~/js/site.js"></script>
+    
 </body>
 </html>

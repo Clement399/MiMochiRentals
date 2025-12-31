@@ -492,7 +492,7 @@ function clearStorage() {
 //function to calculate number of Rental days
 function calculateDate(itemNo) {
     // no need to count period, period only for collection
-    console.clear();
+    //console.clear();
     let item = cartItems[itemNo];
     let startDate = new Date(item.startDate);
     let endDate = new Date(item.endDate);
