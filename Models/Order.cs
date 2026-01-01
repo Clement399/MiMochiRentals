@@ -17,7 +17,7 @@ namespace MiMochiRentals.Models
 
         //start date and end date is already included inside item
 
-        public int orderVal { get; set; }
+        public decimal orderVal { get; set; }
         public int bond {  get; set; }
         public bool paid {  get; set; }
 

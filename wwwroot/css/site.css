@@ -33,3 +33,19 @@ body {
     .checkoutItem img {
         border: 5px solid #f2f9cd;
     }
+
+#stripePayments{
+    background-color : cornsilk;
+    border : 2px solid papayawhip;
+    padding : 10px;
+    margin-right : 10px;
+    gap: 20px;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 20px;
+    padding-block: 20px;
+}
+.strPay{
+    background-color: dodgerblue;
+    border-radius: 20px;
+}

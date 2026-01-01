@@ -75,9 +75,12 @@ namespace MiMochiRentals.Controllers
                 return Ok(Orders);
             }
         }
+
+
         [HttpPost("newOrder")]
         public async Task<IActionResult> NewOrder([FromBody] Order order)
         {
+            Console.WriteLine("Trying to add order");
             try
             {
                 _context.Orders.Add(order);
@@ -95,7 +98,12 @@ namespace MiMochiRentals.Controllers
             {
                 return NotFound("Order not saved to database");
             }
-            return Ok("Order added -- NewOrder");
+            var message = new
+            {
+                Message = "Order Added",
+                InternalOrderId = order.orderID
+            };
+            return Ok(message);
         } 
         /*
         public string GenerateOrderID(MMContext db)

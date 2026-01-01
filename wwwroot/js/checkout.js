@@ -1,19 +1,31 @@
-﻿// This is your test publishable API key.
+﻿//Handles the redirection of the form. Sends the data directly to stripe so that we dont have to maintain the code within the 310 PCI
+//Compatible regulations
+
+console.error("STRIPING...");
+
+// This is your test publishable API key.
+//old-
 const stripe = Stripe("pk_test_51ShRUD1kr1CXwBO9d584BG7bfIy7RAYq7hA7oWs7Ddcgh7VrSEQOmaNYkPyauimf0jx8AOaa06ApcnnimgHbhI9M00BRgdtbay");
+//const stripe = Stripe("pk_test_51ShRUR1SjyxQIlE1LaRLqdW5UPQviaHqBVTojhCjiMgfSIjDGkvbt95SU45mgFmIiXwgwhyQOrm5uo7GiMypWbBk000IIoLMPq");
 
 // The items the customer wants to buy
 const items = [{ id: "depo-test", amount: 99999 }];
 
-console.error("STRIPING...");
+document.addEventListener('DOMContentLoaded', function () {
+    console.log("DOM loaded, initializing...");
+    initialize();
 
+    const form = document.querySelector("#payment-form");
+    if (form) {
+        form.addEventListener("submit", handleSubmit);
+        console.log("Form listener attached");
+    } else {
+        console.error("Payment form not found!");
+    }
+});
 
 let elements;
 
-initialize();
-
-document
-    .querySelector("#payment-form")
-    .addEventListener("submit", handleSubmit);
 
 // Fetches a payment intent and captures the client secret
 async function initialize() {
@@ -24,28 +36,52 @@ async function initialize() {
     });
     const { clientSecret } = await response.json();
 
+    console.error("Client secret :",clientSecret);
+
     const appearance = {
         theme: 'stripe',
+        //ERROR ::  button: 'background-color : Blue'
+        variables: {
+            colorPrimary: '#0000FF', // This sets your blue theme correctly
+            colorBackground: '#ffffff',
+            colorText: '#30313d',
+            borderRadius: '4px',
+        }
     };
     elements = stripe.elements({ appearance, clientSecret });
 
+    const options = { mode: 'billing' };
     const paymentElementOptions = {
         layout: "accordion",
     };
 
+    const linkAuthenticationElement = elements.create("linkAuthentication");
+    
     const paymentElement = elements.create("payment", paymentElementOptions);
+    const addressElement = elements.create('address', options);
+    addressElement.mount('#address-element');
     paymentElement.mount("#payment-element");
+    linkAuthenticationElement.mount("#link-authentication-element");
+
 }
+
+
+console.log("Stripe succeded")
 
 async function handleSubmit(e) {
     e.preventDefault();
+    console.log("PAY BUTTON CLICKED!");
     setLoading(true);
 
-    const { error } = await stripe.confirmPayment({
+    console.log("Calling process rental");
+    await processRental();
+
+    const { error, paymentIntent } = await stripe.confirmPayment({
         elements,
+        // Add this to stay on the page and see the result
+        redirect: if_required,
         confirmParams: {
-            // Make sure to change this to your payment completion page
-            return_url: "http://localhost:4242/complete.html",
+            return_url: window.location.origin + "/home",
         },
     });
 

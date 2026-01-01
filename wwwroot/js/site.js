@@ -200,8 +200,8 @@ function checkItem(itemName) {
 //check date and quantity -> add to cart (pushToCart(rentalItem));
 async function rent() { //table
     console.log("RENT :::: item");
-    const productCode = document.getElementById('product').value;
-    console.error("Product Code :", productCode);
+    const itemTypeCode = document.getElementById('product').value;
+    console.error("Product Code :", itemTypeCode);
     const quantity = document.getElementById('quantity').value;
     const startDate = document.getElementById('startDate').value;
     const startTime = document.getElementById('startTime').value;
@@ -210,7 +210,7 @@ async function rent() { //table
     const terms = document.getElementById('myCheckBox');
 
     //find item 
-    let tempItem = itemTypesMap[productCode];
+    let tempItem = itemTypesMap[itemTypeCode];
     console.error("Temp item : ", tempItem);
     let price = tempItem.price;
     let bond = tempItem.bond;
@@ -239,7 +239,7 @@ async function rent() { //table
 
     // Create rental item
     const rentalItem = {
-        productCode,
+        itemTypeCode,
         quantity: parseInt(quantity),
         startDate,
         startTime,
@@ -265,7 +265,7 @@ async function checkValid(rentalItem) {
     var validQty = false;
     var validTime = false;
     var valid = false;
-    const code = rentalItem.productCode;
+    const code = rentalItem.itemTypeCode;
     var totalQty = itemTypesMap[code].totalQuantity;
     const startDate = new Date(rentalItem.startDate);
     const endDate = new Date(rentalItem.endDate);
@@ -297,7 +297,7 @@ async function checkValid(rentalItem) {
     }
     else {
         alert("Please use a correct rental date after today");
-    }
+    }s
 
     var isValid = await checkRentedDate(rentalItem);
     valid = validTime && validQty && isValid;
@@ -306,7 +306,7 @@ async function checkValid(rentalItem) {
 }
 
 async function checkRentedDate(rentalItem) {
-    const code = rentalItem.productCode;
+    const code = rentalItem.itemTypeCode;
     const route = `items/item/renting/${code}`;
 
     try {
@@ -454,7 +454,7 @@ function loadCheckoutItems() {
             orderPrice += price;
             let rentingDates = calculateDate(i - 1);
             rows += `<div class="twobox">
-            <div id="checkoutItem ${item.productCode}" class="checkoutItem"><img src="../img/chair.jpg"> <p>${i} :: ${item.name}  |Quantity  ${item.quantity}  | Item Price : ${item.price} --  ${price *rentingDates}  <br>  From Date :${item.startDate} -- ${item.endDate}</p>
+            <div id="checkoutItem ${item.itemTypeCode}" class="checkoutItem"><img src="../img/chair.jpg"> <p>${i} :: ${item.name}  |Quantity  ${item.quantity}  | Item Price : ${item.price} --  ${price *rentingDates}  <br>  From Date :${item.startDate} -- ${item.endDate}</p>
             <p>Renting Dates : ${rentingDates}</p>
             <br> Bond :: ${item.bond}
             <div><button onclick="removeProduct('${i - 1}')">X</button> <br><br><hr><br><button onclick="calculateDate(${i - 1})"> | Calculate Date Diff |</button></div>        
@@ -510,4 +510,41 @@ function calculateDate(itemNo) {
         return 1;
     }
     return rentalDays;
+}
+
+//function to add rental items as an order (pending payment) in database
+async function processRental() {
+    const rawPrice = document.getElementById("finalPrice").textContent;
+    const cleanPrice = parseFloat(rawPrice.replace(/[^\d.]/g, ''));
+
+    const rawBond = document.getElementById("priceBond").textContent;
+    const cleanBond = parseInt(rawBond.replace(/[^\d.]/g, ''));
+    const route = `items/Item/newOrder`;
+    var toPost = JSON.stringify({
+        "items": (cartItems),
+        "orderVal": cleanPrice,
+        "bond": cleanBond
+    })
+    console.error("Posting order :", toPost);
+    var Posted = JSON.parse(toPost);
+    console.error("After parsing :", Posted);
+    
+    try {
+        const response = await fetch(route, {
+            method: "Post",
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: toPost
+        })
+        if (!response.ok) {
+            throw new Error(`Response status : ${response.status}`)
+        }
+        const data = await response.json();
+        console.log(data);
+
+    }
+    catch (ex) {
+        console.error(ex);
+    }
 }

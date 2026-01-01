@@ -12,6 +12,7 @@ builder.Services.AddControllersWithViews();
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 Console.WriteLine($"Connection String: {connectionString}");
 
+//StripeConfiguration.ApiKey = "sk_test_51ShRUR1SjyxQIlE1tQMeTnJlQ4TwoksiRXtxnm4E0KnsYpWgV6oh6fXobmddyEtPhj0gWHEX5GYsYuuTMaDDtYQZ00hdRhAiWj"; //test key for stripe -- new
 StripeConfiguration.ApiKey = "sk_test_51ShRUD1kr1CXwBO9YUbMaTGioAW0J90Ffpv5mdDrMJbidmll3oy8G32F6xUNjlyKaGY6hsWR5zraLf1pqSO5oBGo00ZdAld90a"; //test key for stripe
 //use the secret key, the publisher key is for you to publish details to stripe from your js
 

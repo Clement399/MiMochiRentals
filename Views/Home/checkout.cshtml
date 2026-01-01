@@ -27,11 +27,11 @@
         }
     </style>
 
-
+    <link rel="stylesheet" href="~/css/site.css" />
     <script src="https://js.stripe.com/clover/stripe.js"></script>
+    <script src="~/js/site.js"></script>
     <script src="~/js/checkout.js"></script>
 
-    <script src="~/js/site.js"></script>
     
 </head>
 <body data-page="checkoutyo">
@@ -42,7 +42,7 @@
             <div id="checkoutItems">
                 <p>item 1 : price : bond : icon</p>
             </div>
-
+            <button onclick="processRental()">Click me to test rental addon</button>
         </div>
         <div id="priceCalc" class="right">
             <div>
@@ -76,17 +76,27 @@
             <hr />
             <br />
             <div>
-                <div id="stripe"><button>Hello Streiepe</button></div>
-                <form id="payment-form">
-                    <div id="payment-element">
-                        <!--Stripe.js injects the Payment Element-->
-                    </div>
-                    <button id="submit">
-                        <div class="spinner hidden" id="spinner"></div>
-                        <span id="button-text">Pay now</span>
-                    </button>
-                    <div id="payment-message" class="hidden"></div>
-                </form>
+                <div id="stripePayments">
+                    <div id="stripe"><button>Hello Streiepe</button></div>
+                    <br />
+                    <form id="payment-form">
+                        <div id="link-authentication-element">
+                            <!--Stripe.js injects the Payment Element-->
+                        </div>
+                        <div id="address-element">
+                            <!--Stripe.js injects the Payment Element-->
+                        </div>
+                        <div id="payment-element">
+                            <!--Stripe.js injects the Payment Element-->
+                        </div>
+                        <button id="submit">
+                            <div class="spinner hidden" id="spinner"></div>
+                            <br />
+                            <span id="button-text" class="strPay">Pay now</span>
+                        </button>
+                        <div id="payment-message" class="hidden"></div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
