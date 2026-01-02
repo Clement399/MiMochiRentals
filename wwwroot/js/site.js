@@ -297,7 +297,7 @@ async function checkValid(rentalItem) {
     }
     else {
         alert("Please use a correct rental date after today");
-    }s
+    }
 
     var isValid = await checkRentedDate(rentalItem);
     valid = validTime && validQty && isValid;

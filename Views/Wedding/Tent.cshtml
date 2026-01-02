@@ -156,23 +156,22 @@
         <div class="purchase">
             <h2><b><u>Engage wedding today!</u></b></h2>
             <hr>
-            <form class="purchaseForm">
+            <div class="purchaseForm">
                 <div>
-                    <label for="table">Select a product</label>
-                    <select name="table&chair" id="table" required>
+                    <label for="product">Select a product</label>
+                    <select name="product" id="product" required>
                         <option>-</option>
-                        <option value="table">Tables</option>
-                        <option value="chair">Chairs</option>
+                        <option value="w-tent-001">Tent</option>
                     </select>
                 </div>
-                <label for="tableCountName">Select Quantitiy : </label>
-                <input type="number" id="tableCount" name="tableCountName" min="1" max="90" placeholder="Quantity" required>
+                <label for="quantity">Select Quantitiy : </label>
+                <input type="number" id="quantity" name="quantity" min="1" max="90" placeholder="Quantity" required>
                 <div>
                     <label for="startDate">Start Date :</label>
-                    <input type="date" name="startDate" required>
+                    <input type="date" id="startDate" name="startDate" required>
                     <div>
                         <label for="rentalTime">Time : </label>
-                        <select name="timeFrame" id="rentalTime" required>
+                        <select name="rentalTime" id="startTime" required>
                             <option>-</option>
                             <option value="Moring">Morning (7am-11am)</option>
                             <option value="Afternoon">Afternoon (11am-4pm)</option>
@@ -182,9 +181,9 @@
                 </div>
                 <div>
                     <label for="endDate">Return Date :</label>
-                    <input type="date" name="endDate" required>
+                    <input type="date" id="endDate" name="endDate" required>
                     <div>
-                        <label for="rentalTime">Time : </label><select name="timeFrame" id="rentalTime" required>
+                        <label for="endTime">Time : </label><select name="endTime" id="endTime" required>
                             <option>-</option>
                             <option value="Moring">Morning (7am-11am)</option>
                             <option value="Afternoon">Afternoon (11am-4pm)</option>
@@ -192,8 +191,8 @@
                         </select>
                     </div>
                 </div>
-                <input type="submit" value="Submit">
-            </form>
+                <button id="addToCartBtn" onclick="rent()">Add to Cart</button>
+            </div>
         </div>
     </div>
     <br>
@@ -250,6 +249,10 @@
                 <li><p>A bond of 50-150 will be required to be paid upfront before picking up the products and will be returned 2 days after</p></li>
                 <li><p>An overtime fee will occur with penalties if return time exceeds booking time</p></li>
             </ol>
+
+            <label for="myCheckBox">I have read and accepted the terms and conditions</label>
+            <input type="checkbox" id="myCheckBox" name="termsAndConditions" value="read" required>
+
         </div>
 
     </div>
