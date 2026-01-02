@@ -514,6 +514,7 @@ function calculateDate(itemNo) {
 
 //function to add rental items as an order (pending payment) in database
 async function processRental() {
+    var orderID = 0;
     const rawPrice = document.getElementById("finalPrice").textContent;
     const cleanPrice = parseFloat(rawPrice.replace(/[^\d.]/g, ''));
 
@@ -542,9 +543,18 @@ async function processRental() {
         }
         const data = await response.json();
         console.log(data);
-
+        orderID = data.internalOrderId;
+        console.log("Internal Order ID :", orderID);
+        return orderID;
     }
     catch (ex) {
         console.error(ex);
     }
+    if (!orderID === 0) {
+        return orderID;
+    }
+    else {
+        console.error("Order ID creation failed ! ");
+    }
+    console.log("gggjj", orderID);
 }

@@ -8,6 +8,7 @@ namespace MiMochiRentals.Controllers
         public OrderService(MMContext context) { _context = context; }
         public async Task UpdateOrder(int OrderID, string NewStatus)
         {
+            Console.WriteLine("Updating order :"+ OrderID +" order Status :"+ NewStatus);
             try
             {
                 var order = await _context.Orders.FindAsync(OrderID);

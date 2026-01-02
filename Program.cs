@@ -16,6 +16,8 @@ Console.WriteLine($"Connection String: {connectionString}");
 StripeConfiguration.ApiKey = "sk_test_51ShRUD1kr1CXwBO9YUbMaTGioAW0J90Ffpv5mdDrMJbidmll3oy8G32F6xUNjlyKaGY6hsWR5zraLf1pqSO5oBGo00ZdAld90a"; //test key for stripe
 //use the secret key, the publisher key is for you to publish details to stripe from your js
 
+//stripe webhook secret
+//whsec_be22bf693a9d876dbfd085985d861807f4116a2a12aa3308077ab594f7f61861
 
 builder.Services.AddDbContext<MMContext>(options =>
 {

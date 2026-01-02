@@ -13,12 +13,13 @@ namespace MiMochiRentals.Controllers
 {
     [Route("UpdateIntent")]
     [ApiController]
-    public class UpdateIntent() : Controller
+    public class UpdateIntentController() : Controller
     {
         [HttpPost("metadata")]
         public async Task<IActionResult> UpdatePaymentIntentMetadata([FromBody] UpdateMetadataRequest request)
 
         {
+            Console.WriteLine("Updating payment metadata");
             var service = new PaymentIntentService();
             var options = new PaymentIntentUpdateOptions
             {

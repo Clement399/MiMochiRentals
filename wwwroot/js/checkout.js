@@ -2,7 +2,7 @@
 //Compatible regulations
 
 console.error("STRIPING...");
-
+let currentPaymentIntentId = null;
 // This is your test publishable API key.
 //old-
 const stripe = Stripe("pk_test_51ShRUD1kr1CXwBO9d584BG7bfIy7RAYq7hA7oWs7Ddcgh7VrSEQOmaNYkPyauimf0jx8AOaa06ApcnnimgHbhI9M00BRgdtbay");
@@ -35,8 +35,9 @@ async function initialize() {
         body: JSON.stringify({ items }),
     });
     const { clientSecret } = await response.json();
-
-    console.error("Client secret :",clientSecret);
+    currentPaymentIntentId = clientSecret.split('_secret_')[0];
+    console.error("Client secret :", clientSecret);
+    console.error("Payment Intent : ", currentPaymentIntentId);
 
     const appearance = {
         theme: 'stripe',
@@ -74,12 +75,29 @@ async function handleSubmit(e) {
     setLoading(true);
 
     console.log("Calling process rental");
-    await processRental();
+    const internalOrder = await processRental();
+    console.log("internal order id from processRental :", internalOrder);
+
+    //get the intent id and and order id posted in my paymentintent from api
+    console.log("Updating payment intent metadata... ");
+    var toPost = JSON.stringify({
+        PaymentIntentId: currentPaymentIntentId,
+        OrderId: internalOrder
+    })
+    console.log(toPost);
+    await fetch("/updateIntent/metadata", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            PaymentIntentId: currentPaymentIntentId,
+            OrderId: internalOrder
+        })
+    });
 
     const { error, paymentIntent } = await stripe.confirmPayment({
         elements,
         // Add this to stay on the page and see the result
-        redirect: if_required,
+        //redirect: 'if_required',
         confirmParams: {
             return_url: window.location.origin + "/home",
         },
