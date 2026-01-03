@@ -274,10 +274,11 @@ async function checkValid(rentalItem) {
     //fetch api, fetch quantity from rented out table
 
 
-    if (totalQty > rentalItem.quantity)
+    if (totalQty >= rentalItem.quantity && rentalItem.quantity > 0)
     {
         validQty = true;
     }
+    else if (rentalItem.quantity === 0) { alert("Item quantity shall be at least 1") }
     else { alert('Item exceeded limits') }
 
     //meet condition if both dates pass

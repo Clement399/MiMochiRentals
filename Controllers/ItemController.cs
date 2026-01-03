@@ -162,7 +162,7 @@ namespace MiMochiRentals.Controllers
             }
             if (!rentedItems.Any())
             {
-                return NotFound($"No rented items found for code {Code}");
+                return new List<Item>();
             }
             return Ok(rentedItems);
         }

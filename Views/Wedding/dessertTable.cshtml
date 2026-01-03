@@ -117,6 +117,7 @@
             flex-direction: column;
         }
     </style>
+    <link rel="stylesheet" link="~/css/site.css" />
 </head>
 <body class="mainPage Wedding">
     <div class="header">
@@ -145,30 +146,29 @@
     <br>
     <div class="weddingItem">
         <div class="picture">
-            <h2>Tables</h2>
-            <img src="../img/table.jpg" width="250vw" title="Tables">
+            <h2>Dessert Stand</h2>
+            <img src="../img/desertTableWedding.jpg" width="250vw" title="Tables">
         </div>
 
         <div class="purchase">
-            <h2><b><u>Engage wedding today!</u></b></h2>
+            <h2><b><u>Book a dessert island today!</u></b></h2>
             <hr>
-            <form class="purchaseForm">
+            <div class="purchaseForm">
                 <div>
-                    <label for="table">Select a product</label>
-                    <select name="table&chair" id="table" required>
+                    <label for="product">Select a product</label>
+                    <select name="product" id="product" required>
                         <option>-</option>
-                        <option value="table">Tables</option>
-                        <option value="chair">Chairs</option>
+                        <option value="w-dessert-001">Dessert Table</option>
                     </select>
                 </div>
-                <label for="tableCountName">Select Quantitiy : </label>
-                <input type="number" id="tableCount" name="tableCountName" min="1" max="90" placeholder="Quantity" required>
+                <label for="quantity">Select Quantitiy : </label>
+                <input type="number" id="quantity" name="quantity" min="1" max="90" placeholder="Quantity" required>
                 <div>
                     <label for="startDate">Start Date :</label>
-                    <input type="date" name="startDate" required>
+                    <input type="date" id="startDate" name="startDate" required>
                     <div>
                         <label for="rentalTime">Time : </label>
-                        <select name="timeFrame" id="rentalTime" required>
+                        <select name="rentalTime" id="startTime" required>
                             <option>-</option>
                             <option value="Moring">Morning (7am-11am)</option>
                             <option value="Afternoon">Afternoon (11am-4pm)</option>
@@ -178,9 +178,9 @@
                 </div>
                 <div>
                     <label for="endDate">Return Date :</label>
-                    <input type="date" name="endDate" required>
+                    <input type="date" id="endDate" name="endDate" required>
                     <div>
-                        <label for="rentalTime">Time : </label><select name="timeFrame" id="rentalTime" required>
+                        <label for="endTime">Time : </label><select name="endTime" id="endTime" required>
                             <option>-</option>
                             <option value="Moring">Morning (7am-11am)</option>
                             <option value="Afternoon">Afternoon (11am-4pm)</option>
@@ -188,12 +188,8 @@
                         </select>
                     </div>
                 </div>
-                <input type="submit" value="Submit">
-            </form>
-        </div>
-        <div class="picture" style="padding-inline: 20px;">
-            <h2>Chairs</h2>
-            <img src="../img/chair.jpg" width="250vw" title="Tables">
+                <button id="addToCartBtn" onclick="rent()">Add to Cart</button>
+            </div>
         </div>
     </div>
     <br>
@@ -222,19 +218,21 @@
             <div><p>super idol</p></div>
         </fieldset>
     </div>
-    <div class="weddingItem">
-        
     <br>
-    <br>
-        <div>
-            <h2><i><u>More Pictures</u></i></h2>
-            <img src="../img/table.jpg" width="150px">
-            <img src="../img/table.jpg" width="150px">
-            <img src="../img/table.jpg" width="150px">
-            <img src="../img/table.jpg" width="150px">
-            <img src="../img/table.jpg" width="150px">
+        <br>
+        <div class="weddingItem">
+            <div>
+                <h2><i><u>More Pictures</u></i></h2>
+                <div class="DisplayImages">
+                    <img src="../img/desertTableWedding.jpg" width="150px">
+                    <img src="../img/dessertTable.jpg" width="150px">
+                    <img src="../img/desertTableWedding.jpg" width="150px">
+                    <img src="../img/dessertTable.jpg" width="150px">
+                    <img src="../img/desertTableWedding.jpg" width="150px">
+                </div>
+            </div>
         </div>
-    </div>
+    
     <br>
     <hr>
     <br>
