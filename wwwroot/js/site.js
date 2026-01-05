@@ -431,6 +431,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Common code for all pages runs here too
+    
 });
 
 function loadCheckoutItems() {
