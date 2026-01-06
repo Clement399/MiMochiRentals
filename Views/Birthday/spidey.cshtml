@@ -1,10 +1,4 @@
-﻿<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
+﻿    <style>
         :root {
             --bdclr: rgb(255, 183, 5);
             --bdclr2: rgba(0, 59, 149);
@@ -202,8 +196,7 @@
                 font-size: 30px
             }
     </style>
-</head>
-<body class="mainPage BirthdayPage">
+<div class="mainPage BirthdayPage">
     <div class="header">
         <ul class="bannerList">
             <li>
@@ -259,26 +252,27 @@
                 </p>
             </div>
         </div>
+<!-- Spidey Dessert Table-->
 
         <div class="purchase">
             <h2><b><u>Order Now!</u></b></h2>
             <hr>
             <form class="purchaseForm">
                 <div>
-                    <label for="table">Select a product</label>
-                    <select name="table&chair" id="table" required>
+                    <label for="product">Select a product</label>
+                    <select name="itemTypeCode" id="product" required>
                         <option>-</option>
-                        <option value="DessertTablesMC">Dessert Table</option>
+                        <option value="spi-dt-001">Spiderman Dessert Table</option>
                     </select>
                 </div>
-                <label for="tableCountName">Select Quantitiy : </label>
-                <input type="number" id="tableCount" name="tableCountName" min="1" max="1" placeholder="Quantity" required>
+                <label for="quantity">Select Quantitiy : </label>
+                <input type="number" id="quantity" name="quantity" min="1" max="90" placeholder="Quantity" required>
                 <div>
                     <label for="startDate">Start Date :</label>
-                    <input type="date" name="startDate" required>
+                    <input type="date" id="startDate" name="startDate" required>
                     <div>
-                        <label for="rentalTime">Time : </label>
-                        <select name="timeFrame" id="rentalTime" required>
+                        <label for="startTime">Time : </label>
+                        <select name="startTime" id="startTime" required>
                             <option>-</option>
                             <option value="Moring">Morning (7am-11am)</option>
                             <option value="Afternoon">Afternoon (11am-4pm)</option>
@@ -288,9 +282,9 @@
                 </div>
                 <div>
                     <label for="endDate">Return Date :</label>
-                    <input type="date" name="endDate" required>
+                    <input type="date" id="endDate" name="endDate" required>
                     <div>
-                        <label for="rentalTime">Time : </label><select name="timeFrame" id="rentalTime" required>
+                        <label for="endTime">Time : </label><select name="endTime" id="endTime" required>
                             <option>-</option>
                             <option value="Moring">Morning (7am-11am)</option>
                             <option value="Afternoon">Afternoon (11am-4pm)</option>
@@ -298,7 +292,7 @@
                         </select>
                     </div>
                 </div>
-                <input type="submit" value="Check Availability">
+                <button id="addToCartBtn">Add to Cart</button>
             </form>
         </div>
 
@@ -335,25 +329,27 @@
             </div>
         </div>
 
+        <!-- Spiderman theme board -->
+
         <div class="purchase">
             <h2><b><u>Order Now!</u></b></h2>
             <hr>
             <form class="purchaseForm">
                 <div>
-                    <label for="table">Select a product</label>
-                    <select name="table&chair" id="table" required>
+                    <label for="product">Select a product</label>
+                    <select name="itemTypeCode" id="product" required>
                         <option>-</option>
-                        <option value="table">Minecraft Backdrop</option>
+                        <option value="spi-cb-001">Spiderman Theme Board</option>
                     </select>
                 </div>
-                <label for="tableCountName">Select Quantitiy : </label>
-                <input type="number" id="tableCount" name="tableCountName" min="1" max="1" placeholder="Quantity" required>
+                <label for="quantity">Select Quantitiy : </label>
+                <input type="number" id="quantity" name="quantity" min="1" max="90" placeholder="Quantity" required>
                 <div>
                     <label for="startDate">Start Date :</label>
-                    <input type="date" name="startDate" min="Now" required>
+                    <input type="date" id="startDate" name="startDate" required>
                     <div>
-                        <label for="rentalTime">Time : </label>
-                        <select name="timeFrame" id="rentalTime" required>
+                        <label for="startTime">Time : </label>
+                        <select name="startTime" id="startTime" required>
                             <option>-</option>
                             <option value="Moring">Morning (7am-11am)</option>
                             <option value="Afternoon">Afternoon (11am-4pm)</option>
@@ -363,9 +359,9 @@
                 </div>
                 <div>
                     <label for="endDate">Return Date :</label>
-                    <input type="date" name="endDate" required>
+                    <input type="date" id="endDate" name="endDate" required>
                     <div>
-                        <label for="rentalTime">Time : </label><select name="timeFrame" id="rentalTime" required>
+                        <label for="endTime">Time : </label><select name="endTime" id="endTime" required>
                             <option>-</option>
                             <option value="Moring">Morning (7am-11am)</option>
                             <option value="Afternoon">Afternoon (11am-4pm)</option>
@@ -373,7 +369,7 @@
                         </select>
                     </div>
                 </div>
-                <input type="submit" value="Submit">
+                <button id="addToCartBtn">Add to Cart</button>
             </form>
         </div>
     </div>
@@ -381,82 +377,6 @@
     <br>
     <hr>
     <br>
-    <div class="weddingItem">
-        <div class="picture">
-            <h2>Background Boards</h2>
-            <img src="birthdayImage/standing_Background3.png" width="100%" title="Tables">
-        </div>
-
-        <div>
-            <h2><i>Description</i></h2>
-            <hr>
-            <p>
-                Three background boards themed with minecraft characters<br>
-                Let children immerse in the world of ______ with our themed backgrounds<br>
-
-            </p>
-
-            <hr>
-            <div class="productDescription">
-                <h2>Product Details</h2>
-                <p>
-                    Board dimensions:
-                    <br>   Board height : 100xm,
-                    <br>   Board width : 20xm,
-                    <br>   Board length : 60cm.
-
-                </p>
-            </div>
-        </div>
-
-        <div class="purchase">
-            <h2><b><u>Order Now!</u></b></h2>
-            <hr>
-            <form class="purchaseForm">
-                <div>
-                    <label for="table">Select a product</label>
-                    <select name="table&chair" id="table" required>
-                        <option>-</option>
-                        <option value="BoardABC">Board A+B+C</option>
-                        <option value="BoardA">Board A</option>
-                        <option value="BoardB">Board B</option>
-                        <option value="BoardC">Board C</option>
-                        <option value="BoardAB">Board A+B</option>
-                        <option value="BoardAC">Board A+C</option>
-                        <option value="BoardBC">Board B+C</option>
-                    </select>
-                </div>
-                <label for="tableCountName">Select Quantitiy : </label>
-                <input type="number" id="tableCount" name="tableCountName" min="1" max="1" placeholder="Quantity" required>
-                <div>
-                    <label for="startDate">Start Date :</label>
-                    <input type="date" name="startDate" required>
-                    <div>
-                        <label for="rentalTime">Time : </label>
-                        <select name="timeFrame" id="rentalTime" required>
-                            <option>-</option>
-                            <option value="Moring">Morning (7am-11am)</option>
-                            <option value="Afternoon">Afternoon (11am-4pm)</option>
-                            <option value="Evening">Evening (4pm-9pm)</option>
-                        </select>
-                    </div>
-                </div>
-                <div>
-                    <label for="endDate">Return Date :</label>
-                    <input type="date" name="endDate" required>
-                    <div>
-                        <label for="rentalTime">Time : </label><select name="timeFrame" id="rentalTime" required>
-                            <option>-</option>
-                            <option value="Moring">Morning (7am-11am)</option>
-                            <option value="Afternoon">Afternoon (11am-4pm)</option>
-                            <option value="Evening">Evening (4pm-9pm)</option>
-                        </select>
-                    </div>
-                </div>
-                <input type="submit" value="Check Availability">
-            </form>
-        </div>
-    </div>
 
     <div class="weddingItem">
         <div>
@@ -474,5 +394,7 @@
         </div>
 
     </div>
-</body>
-</html>
+</div>
+@section Scripts{
+    <script src="~/js/forms.js"></script>
+}

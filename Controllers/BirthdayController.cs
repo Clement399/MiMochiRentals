@@ -62,7 +62,7 @@ namespace MiMochiRentals.Controllers
         public IActionResult Spidey()
         {
             Console.WriteLine("Childrens page : spiderman");
-            return View();
+            return View("spidey");
         }
     }
 }
