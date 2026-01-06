@@ -1,9 +1,4 @@
-﻿<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+﻿
     <style>
         :root {
             --bdclr: rgb(255, 183, 5);
@@ -203,11 +198,9 @@
             }
     </style>
     <link rel="stylesheet" href="~/css/site.css" />
-    
     <script src="~/js/site.js"></script>
     <script src="~/js/forms.js"></script>
-</head>
-<body class="mainPage BirthdayPage">
+<div class="mainPage BirthdayPage">
     <div class="header">
         <ul class="bannerList">
             <li>
@@ -269,8 +262,8 @@
             <hr>
             <form class="purchaseForm">
                 <div>
-                    <label for="product">Select a product</label>
-                    <select name="product" id="product" required>
+                    <label for="itemTypeCode">Select a product</label>
+                    <select name="itemTypeCode" id="itemTypeCode" required>
                         <option>-</option>
                         <option value="mc-bg-001">(McBg001)Board A+B+C</option>
                         <option value="BoardA">Board A</option>
@@ -287,8 +280,8 @@
                     <label for="startDate">Start Date :</label>
                     <input type="date" name="startDate" id="startDate" required>
                     <div>
-                        <label for="rentalTime">Time : </label>
-                        <select name="timeFrame" id="rentalTime" required>
+                        <label for="startTime">Time : </label>
+                        <select name="starTime" id="startTime" required>
                             <option>-</option>
                             <option value="Moring">Morning (7am-11am)</option>
                             <option value="Afternoon">Afternoon (11am-4pm)</option>
@@ -349,9 +342,9 @@
             <form class="purchaseForm">
                 <div>
                     <label for="product">Select a product</label>
-                    <select name="product" id="product" required>
+                    <select name="itemTypeCode" id="product" required>
                         <option>-</option>
-                        <option value="mc-dt-001">Minecraft Dessert Table</option>
+                        <option value="blu-dt-001">Bluey Dessert Table</option>
                     </select>
                 </div>
                 <label for="quantity">Select Quantitiy : </label>
@@ -360,8 +353,8 @@
                     <label for="startDate">Start Date :</label>
                     <input type="date" id="startDate" name="startDate" required>
                     <div>
-                        <label for="rentalTime">Time : </label>
-                        <select name="rentalTime" id="startTime" required>
+                        <label for="startTime">Time : </label>
+                        <select name="startTime" id="startTime" required>
                             <option>-</option>
                             <option value="Moring">Morning (7am-11am)</option>
                             <option value="Afternoon">Afternoon (11am-4pm)</option>
@@ -423,20 +416,20 @@
             <hr>
             <form class="purchaseForm">
                 <div>
-                    <label for="table">Select a product</label>
-                    <select name="table&chair" id="table" required>
+                    <label for="product">Select a product</label>
+                    <select name="itemTypeCode" id="product" required>
                         <option>-</option>
-                        <option value="table">Minecraft Backdrop</option>
+                        <option value="blu-cb-001">BLuey Backdrop</option>
                     </select>
                 </div>
-                <label for="tableCountName">Select Quantitiy : </label>
-                <input type="number" id="tableCount" name="tableCountName" min="1" max="1" placeholder="Quantity" required>
+                <label for="quantity">Select Quantitiy : </label>
+                <input type="number" id="quantity" name="quantity" min="1" max="90" placeholder="Quantity" required>
                 <div>
                     <label for="startDate">Start Date :</label>
-                    <input type="date" name="startDate" min="Now" required>
+                    <input type="date" id="startDate" name="startDate" required>
                     <div>
-                        <label for="rentalTime">Time : </label>
-                        <select name="timeFrame" id="rentalTime" required>
+                        <label for="startTime">Time : </label>
+                        <select name="startTime" id="startTime" required>
                             <option>-</option>
                             <option value="Moring">Morning (7am-11am)</option>
                             <option value="Afternoon">Afternoon (11am-4pm)</option>
@@ -446,9 +439,9 @@
                 </div>
                 <div>
                     <label for="endDate">Return Date :</label>
-                    <input type="date" name="endDate" required>
+                    <input type="date" id="endDate" name="endDate" required>
                     <div>
-                        <label for="rentalTime">Time : </label><select name="timeFrame" id="rentalTime" required>
+                        <label for="endTime">Time : </label><select name="endTime" id="endTime" required>
                             <option>-</option>
                             <option value="Moring">Morning (7am-11am)</option>
                             <option value="Afternoon">Afternoon (11am-4pm)</option>
@@ -456,7 +449,7 @@
                         </select>
                     </div>
                 </div>
-                <input type="submit" value="Submit">
+                <button id="addToCartBtn">Add to Cart</button>
             </form>
         </div>
     </div>
@@ -477,5 +470,7 @@
         </div>
 
     </div>
-</body>
-</html>
+</div>
+@section Scripts {
+    <script src="~/js/forms.js"></script>
+}
