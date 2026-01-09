@@ -1,13 +1,5 @@
-﻿<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+﻿
     <style>
-        .mainPage {
-            padding-inline: 50px;
-        }
 
         .header {
             background-color: bisque;
@@ -82,30 +74,7 @@
             border-radius: 9px;
         }
     </style>
-</head>
-<body class="mainPage">
-    <div class="header">
-        <ul class="bannerList">
-            <li>
-                <p>Home</p>
-            </li>
-            <li>
-                <p>
-                    Weddings
-                </p>
-            </li>
-            <li>
-                <p>
-                    Birthdays
-                </p>
-            </li>
-        </ul>
-    </div>
-    <br>
-    <br>
-    <br>
-    <hr>
-    <br>
+<div class="mainPage">
     <div class="mainPageDescription">
         <h1 id="Description"><u><strong>Description</strong></u></h1>
         <br>
@@ -127,20 +96,16 @@
         <div class="ProductsGrid">
             <div id="Wedding" class="Products">
                 <img src="https://thelane.com/wp-content/uploads/2023/08/DSC08928-scaled.jpg" width="300px">
-                <button onclick="changePage('wedding')">Weddings</button>
+                <a class="alan" asp-area="" asp-controller="Home" asp-action="Weddings" ><div class="wd">Weddings</div></a>
 
             </div>
             <div id="Birthday" class="Products">
                 <img src="img/birthday_icon.jpg"
                      width="300px">
-                <button onclick="changePage('birthday')">Birthdays</button>
+                <a class="alan" asp-controller ="Home" asp-action="Birthdays"><p>Birthday</p></a>
             </div>
 
         </div>
     </fieldset>
     <script src="~/js/site.js"></script>
-</body>
-
-                >//src="https://cdn.larrywalshe.com/wp-content/uploads/2022/02/04153550/larry-walshe-luxury-kids-parties.jpg"
-
-</html>
+</div>

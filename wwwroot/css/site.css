@@ -20,7 +20,14 @@ html {
 body {
   margin-bottom: 60px;
 }
-
+.Wedding{
+    background-color: aliceblue;
+}
+.mainPage {
+    padding-top: 50px;
+    margin: 0px;
+    width: 100%;
+}
 .checkoutItem{
     background-color :cornsilk;
     border : 2px solid black;
@@ -49,3 +56,42 @@ body {
     background-color: dodgerblue;
     border-radius: 20px;
 }
+.alan{
+    display:flex;
+    flex-direction:column;
+    background-color: whitesmoke;
+    align-items: center;
+    justify-content: center;
+}
+.wd{
+    align-self: center;
+    justify-content:center;
+}
+.Products{
+    transition: transform 0.3s ease-in-out;
+}
+.Products:hover {
+    transform: translateY(-5px); /* Professional "lift" effect on hover */
+}
+.bdList {
+    transition: transform 0.3s ease-in-out;
+}
+
+    .bdList:hover {
+        transform: translateY(-5px); /* Professional "lift" effect on hover */
+    }
+.weddingItem {
+    border: 1px solid #eee;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: #fff;
+    transition: transform 0.2s ease;
+}
+
+    .weddingItem:hover {
+        transform: translateY(-5px); /* Professional "lift" effect on hover */
+    }

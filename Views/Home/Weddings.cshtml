@@ -3,17 +3,7 @@
 *@
 @{
 }
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
     <style>
-        .mainPage {
-            padding-inline: 50px;
-            background-color: white;
-        }
 
         .header {
             background-color: bisque;
@@ -75,30 +65,7 @@
 
             }
     </style>
-</head>
-<body class="mainPage Wedding">
-    <div class="header">
-        <ul class="bannerList">
-            <li>
-                <p>Home</p>
-            </li>
-            <li>
-                <p>
-                    Weddings
-                </p>
-            </li>
-            <li>
-                <p>
-                    Birthdays
-                </p>
-            </li>
-        </ul>
-    </div>
-    <br>
-    <br>
-    <br>
-    <hr>
-    <br>
+<div class="mainPage Wedding">
     <h1><u><i>Harmonious Wedding Range</i></u></h1>
     <br>
     <div class="ProductsGrid implementAsGrid">
@@ -118,7 +85,7 @@
                  width="300vw">
             <p>Gazebo</p>
         </div>
-        <div class="Products tables" onclick="weddingProduct('')">
+        <div class="Products tables" onclick="weddingProduct('wset')">
             <img src="https://cdn0.weddingwire.ca/article-real-wedding-o/8380/3_2/960/jpg/50_10838.jpeg"
                  width="500vmax">
             <p>Full Set</p>
@@ -138,9 +105,21 @@
                  width="300vw">
             <p>Dessert Table</p>
         </div>
-
-
+        <div class="Products tables" onclick="weddingProduct('archsteel')">
+            <img src="https://www.bigw.com.au/medias/sys_master/images/images/h08/h46/115536373874718.jpg"
+                 width="300vw">
+            <p>Steel Arch</p>
+        </div>
+        <div class="Products tables" onclick="weddingProduct('archwood')">
+            <img src="https://m.media-amazon.com/images/I/81LLn31DJ9L.jpg"
+                 width="300vw">
+            <p>Wooden arch</p>
+        </div>
+        <div class="Products tables" onclick="weddingProduct('carpet')">
+            <img src="https://i.ebayimg.com/images/g/QbIAAOSwBmNlOKvP/s-l400.jpg"
+                 width="300vw">
+            <p>Wedding Carpet</p>
+        </div>
     </div>
     <script src="~/js/site.js"></script>
-</body>
-</html>
+</div>
